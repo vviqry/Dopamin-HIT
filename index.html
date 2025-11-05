@@ -12,6 +12,7 @@
             padding: 20px;
             background-color: #f4f4f4;
             color: #333;
+            position: relative;
         }
         h1 {
             text-align: center;
@@ -38,6 +39,10 @@
         h2 {
             margin-top: 0;
             color: #34495e;
+            white-space: nowrap; /* Memastikan judul satu baris saja */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 1.1em; /* Sesuaikan ukuran font agar muat */
         }
         ul {
             list-style-type: none;
@@ -58,6 +63,45 @@
         .emoji {
             font-size: 1.2em;
             margin-right: 8px;
+        }
+        /* Styling Sticky Note */
+        .sticky-note {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            width: 250px;
+            min-height: 200px;
+            background-color: #fff9c4;
+            border: 2px solid #f57f17;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-size: 0.9em;
+            line-height: 1.4;
+            cursor: move;
+            user-select: none;
+            z-index: 1000;
+        }
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #f57f17;
+        }
+        .sticky-note h3 {
+            margin: 0 0 10px 0;
+            color: #f57f17;
+            font-size: 1em;
+            text-align: center;
+        }
+        .sticky-note p {
+            margin: 0;
+            color: #333;
         }
     </style>
 </head>
@@ -86,5 +130,59 @@
             </ul>
         </div>
     </div>
+
+    <!-- Sticky Note -->
+    <div class="sticky-note" id="stickyNote">
+        <h3>Catatan Penting</h3>
+        <p>Kalau lu kebanyakan ngomong, bisa jadi lu tong kosong.<br>
+        Kalau lu kebanyakan mikir, bisa jadi lu depresi.<br>
+        Kalau lu kebanyakan nangis, bisa jadi lu kehilangan jati diri.<br>
+        Kalau lu kebanyakan peduli, bisa jadi lu kehilangan respek.<br>
+        Kalau lu kebanyakan percaya, bisa jadi lu gampang dibohongin.<br>
+        Kalau lu kebanyakan Scroll Medsos, bisa jadi otaklu udah busuk !</p>
+    </div>
+
+    <script>
+        // Fungsi drag untuk sticky note dengan klik kanan
+        const stickyNote = document.getElementById('stickyNote');
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        stickyNote.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Cegah menu konteks default
+        });
+
+        stickyNote.addEventListener('mousedown', (e) => {
+            if (e.button === 2) { // Cek klik kanan (button 2)
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+
+                if (e.target === stickyNote || stickyNote.contains(e.target)) {
+                    isDragging = true;
+                }
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+
+                stickyNote.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    </script>
 </body>
 </html>
