@@ -83,8 +83,8 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 250px;
-            min-height: 200px;
+            width: 280px; /* Diperbesar 30px dari 250px */
+            min-height: 230px; /* Diperbesar 30px dari 200px */
             background-color: #fff9c4;
             border: 2px solid #f57f17;
             border-radius: 8px;
@@ -107,6 +107,16 @@
         }
         .sticky-note-content {
             color: #333;
+        }
+        .line-left {
+            text-align: left;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .line-right {
+            text-align: right;
+            display: block;
+            margin-bottom: 8px;
         }
     </style>
 </head>
@@ -143,12 +153,18 @@
     <div class="sticky-note" id="stickyNote">
         <div class="sticky-note-header">Catatan Penting:</div>
         <div class="sticky-note-content">
-            Kalau lu kebanyakan ngomong, bisa jadi lu tong kosong.<br>
-            Kalau lu kebanyakan mikir, bisa jadi lu depresi.<br>
-            Kalau lu kebanyakan nangis, bisa jadi lu kehilangan jati diri.<br>
-            Kalau lu kebanyakan peduli, bisa jadi lu kehilangan respek.<br>
-            Kalau lu kebanyakan percaya, bisa jadi lu gampang dibohongin.<br>
-            Kalau lu kebanyakan Scroll Medsos, bisa jadi otaklu udah busuk !
+            <span class="line-left">Kalau lu kebanyakan ngomong,</span>
+            <span class="line-right">bisa jadi lu tong kosong.</span>
+            <span class="line-left">Kalau lu kebanyakan mikir,</span>
+            <span class="line-right">bisa jadi lu depresi.</span>
+            <span class="line-left">Kalau lu kebanyakan nangis,</span>
+            <span class="line-right">bisa jadi lu kehilangan jati diri.</span>
+            <span class="line-left">Kalau lu kebanyakan peduli,</span>
+            <span class="line-right">bisa jadi lu kehilangan respek.</span>
+            <span class="line-left">Kalau lu kebanyakan percaya,</span>
+            <span class="line-right">bisa jadi lu gampang dibohongin.</span>
+            <span class="line-left">Kalau lu kebanyakan Scroll Medsos,</span>
+            <span class="line-right">bisa jadi otaklu udah busuk !</span>
         </div>
     </div>
 
