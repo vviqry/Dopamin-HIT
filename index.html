@@ -55,6 +55,11 @@
             padding: 8px;
             background-color: #ecf0f1;
             border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        li:hover {
+            background-color: #d5dbdb;
         }
         .bad li {
             border-left: 3px solid #e74c3c;
@@ -118,6 +123,61 @@
             display: block;
             margin-bottom: 8px;
         }
+
+        /* Modal untuk gambar */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            padding: 20px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+        }
+        .gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .gallery img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+        }
+        @media only screen and (max-width: 700px) {
+            .gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -129,11 +189,11 @@
                 <li><span class="emoji">❌</span>SOSMED</li>
                 <li><span class="emoji">❌</span>YOUTUBE</li>
                 <li><span class="emoji">❌</span>GAME</li>
-                <li><span class="emoji">❌</span>MUSIC</li>
+                <li id="threegp-li"><span class="emoji">❌</span>3gp</li>
                 <li><span class="emoji">❌</span>FILM</li>
                 <li><span class="emoji">❌</span>GOSIP</li>
                 <li><span class="emoji">❌</span>BERITA ONLINE</li>
-                <li><span class="emoji">❌</span>3gp</li>
+                <li><span class="emoji">❌</span>MUSIC</li>
             </ul>
         </div>
         <div class="column good">
@@ -165,6 +225,17 @@
             <span class="line-right">bisa jadi lu gampang dibohongin.</span>
             <span class="line-left">Kalau lu kebanyakan Scroll Medsos,</span>
             <span class="line-right">bisa jadi otaklu udah busuk !</span>
+        </div>
+    </div>
+
+    <!-- Modal Gambar -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <div class="gallery">
+                <img src="01.jpg" alt="Gambar 01">
+                <img src="02.jpg" alt="Gambar 02">
+            </div>
         </div>
     </div>
 
@@ -204,6 +275,25 @@
 
         document.addEventListener('mouseup', function() {
             isDragging = false;
+        });
+
+        // Fungsi untuk modal gambar
+        const modal = document.getElementById('imageModal');
+        const threegpLi = document.getElementById('threegp-li');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        threegpLi.addEventListener('click', function() {
+            modal.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         });
     </script>
 </body>
