@@ -146,6 +146,9 @@
             top: 50%;
             transform: translateY(-50%);
             text-align: center;
+            background-color: rgba(255,255,255,0.95); /* Tambahan: background semi-putih untuk kontras */
+            border-radius: 8px;
+            color: #333; /* Warna teks gelap untuk kontras */
         }
         .close {
             color: #aaa;
@@ -158,7 +161,7 @@
         }
         .close:hover,
         .close:focus {
-            color: white;
+            color: #333; /* Ubah hover ke gelap untuk kontras dengan background putih */
             text-decoration: none;
         }
         .gallery {
@@ -179,7 +182,7 @@
             }
         }
 
-        /* Modal untuk Baca Buku */
+        /* Modal untuk Baca Buku - spesifik */
         #bacaBukuModal .modal-content {
             max-height: 80vh;
             overflow-y: auto;
@@ -209,6 +212,7 @@
             background-color: #f9f9f9;
             padding: 10px;
             border-radius: 4px;
+            color: #333; /* Pastikan teks gelap */
         }
     </style>
 </head>
@@ -332,27 +336,25 @@
         // Fungsi untuk modal gambar 3gp
         const imageModal = document.getElementById('imageModal');
         const threegpLi = document.getElementById('threegp-li');
-        const imageCloseBtn = document.getElementsByClassName('close')[0]; // Ini akan match yang pertama, tapi kita handle per modal
+        const imageCloseBtn = document.querySelector('#imageModal .close');
 
         threegpLi.addEventListener('click', function() {
             imageModal.style.display = 'block';
         });
 
+        imageCloseBtn.addEventListener('click', function() {
+            imageModal.style.display = 'none';
+        });
+
         // Fungsi untuk modal Baca Buku
         const bacaBukuModal = document.getElementById('bacaBukuModal');
         const bacaBukuLi = document.getElementById('baca-buku-li');
-        const bacaBukuCloseBtn = bacaBukuModal.querySelector('.close');
+        const bacaBukuCloseBtn = document.querySelector('#bacaBukuModal .close');
 
         bacaBukuLi.addEventListener('click', function() {
             bacaBukuModal.style.display = 'block';
         });
 
-        // Tutup modal untuk imageModal
-        imageCloseBtn.addEventListener('click', function() {
-            imageModal.style.display = 'none';
-        });
-
-        // Tutup modal untuk bacaBukuModal
         bacaBukuCloseBtn.addEventListener('click', function() {
             bacaBukuModal.style.display = 'none';
         });
