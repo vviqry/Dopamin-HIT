@@ -178,6 +178,38 @@
                 align-items: center;
             }
         }
+
+        /* Modal untuk Baca Buku */
+        #bacaBukuModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: left;
+            max-width: 800px;
+        }
+        #bacaBukuModal img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .caption-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .caption-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .caption-list li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -199,7 +231,7 @@
         <div class="column good">
             <h2><span class="emoji">✅</span>Dopamin Hit Baik</h2>
             <ul>
-                <li><span class="emoji">✅</span>BACA BUKU</li>
+                <li id="baca-buku-li"><span class="emoji">✅</span>BACA BUKU</li>
                 <li><span class="emoji">✅</span>OLAHRAGA</li>
                 <li><span class="emoji">✅</span>FOKUS & KERJA KERAS</li>
             </ul>
@@ -228,7 +260,7 @@
         </div>
     </div>
 
-    <!-- Modal Gambar -->
+    <!-- Modal Gambar untuk 3gp -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content">
@@ -236,6 +268,26 @@
                 <img src="01.jpg" alt="Gambar 01">
                 <img src="02.jpg" alt="Gambar 02">
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Baca Buku -->
+    <div id="bacaBukuModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img src="03.jpg" alt="Foto Buku">
+            <div class="caption-title">9 Kebiasaan Sehari-hari yang Sering Dilakukan Orang Bodoh untuk Berpura-pura Pintar</div>
+            <ol class="caption-list">
+                <li>Menggunakan Kata-Kata Besar yang Salah<br>Orang yang berpura-pura pintar sering kali berusaha membuat kesan dengan menggunakan kata-kata besar atau teknis. Namun, sering kali mereka salah dalam menggunakannya atau menggunakan kata-kata tersebut tanpa pemahaman yang benar.</li>
+                <li>Menolak Pengetahuan Baru<br>Mereka cenderung merasa bahwa apa yang mereka ketahui sudah cukup dan tidak ada lagi yang perlu dipelajari. Penolakan terhadap informasi baru ini menunjukkan keterbatasan pemikiran mereka.</li>
+                <li>Menolak Mengakui Kesalahan<br>Orang yang berpura-pura pintar sangat jarang mengakui kesalahan mereka. Mereka sering kali berusaha mempertahankan citra sempurna, bahkan ketika jelas bahwa mereka melakukan kesalahan.</li>
+                <li>Gagal untuk Mendengarkan<br>Mereka lebih suka berbicara daripada mendengarkan. Ini menunjukkan ketidakmampuan mereka untuk memahami perspektif orang lain dan mengapresiasi pemikiran yang berbeda.</li>
+                <li>Kurangnya Kemampuan Berpikir Kritis<br>Mereka mungkin terlihat percaya diri, tetapi mereka tidak mampu berpikir secara kritis atau menganalisis situasi dengan cermat. Biasanya, mereka menerima hal-hal begitu saja tanpa menggali lebih dalam.</li>
+                <li>Melebih-lebihkan Kecerdasan Mereka<br>Salah satu tanda utama orang yang berpura-pura pintar adalah mereka sering melebih-lebihkan kemampuan intelektual mereka. Mereka merasa harus selalu tampil lebih cerdas daripada orang lain.</li>
+                <li>Memiliki Perspektif yang Sempit<br>Mereka sering hanya melihat dunia dari sudut pandang mereka sendiri dan enggan untuk membuka pikiran terhadap ide-ide baru atau perspektif yang lebih luas.</li>
+                <li>Kesulitan dalam Berbicara Secara Bermakna<br>Mereka sering kali kesulitan dalam berpartisipasi dalam percakapan yang mendalam atau bermakna, cenderung menghindari diskusi yang memerlukan pemikiran lebih dalam.</li>
+                <li>Menunjukkan Kurangnya Empati<br>Orang yang berpura-pura pintar sering kali tidak memiliki empati yang cukup terhadap orang lain. Mereka lebih fokus pada diri sendiri dan kurang memperhatikan perasaan atau kebutuhan orang lain.</li>
+            </ol>
         </div>
     </div>
 
@@ -277,22 +329,41 @@
             isDragging = false;
         });
 
-        // Fungsi untuk modal gambar
-        const modal = document.getElementById('imageModal');
+        // Fungsi untuk modal gambar 3gp
+        const imageModal = document.getElementById('imageModal');
         const threegpLi = document.getElementById('threegp-li');
-        const closeBtn = document.getElementsByClassName('close')[0];
+        const imageCloseBtn = document.getElementsByClassName('close')[0]; // Ini akan match yang pertama, tapi kita handle per modal
 
         threegpLi.addEventListener('click', function() {
-            modal.style.display = 'block';
+            imageModal.style.display = 'block';
         });
 
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
+        // Fungsi untuk modal Baca Buku
+        const bacaBukuModal = document.getElementById('bacaBukuModal');
+        const bacaBukuLi = document.getElementById('baca-buku-li');
+        const bacaBukuCloseBtn = bacaBukuModal.querySelector('.close');
+
+        bacaBukuLi.addEventListener('click', function() {
+            bacaBukuModal.style.display = 'block';
         });
 
+        // Tutup modal untuk imageModal
+        imageCloseBtn.addEventListener('click', function() {
+            imageModal.style.display = 'none';
+        });
+
+        // Tutup modal untuk bacaBukuModal
+        bacaBukuCloseBtn.addEventListener('click', function() {
+            bacaBukuModal.style.display = 'none';
+        });
+
+        // Tutup modal dengan klik luar
         window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            if (event.target == imageModal) {
+                imageModal.style.display = 'none';
+            }
+            if (event.target == bacaBukuModal) {
+                bacaBukuModal.style.display = 'none';
             }
         });
     </script>
