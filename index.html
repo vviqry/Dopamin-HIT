@@ -12,7 +12,7 @@
             padding: 20px;
             background-color: #f4f4f4;
             color: #333;
-            position: relative; /* Untuk sticky note */
+            position: relative;
         }
         h1 {
             text-align: center;
@@ -32,24 +32,16 @@
             display: flex;
             flex-direction: column;
         }
-        .bad {
-            border-left: 4px solid #e74c3c;
-        }
-        .good {
-            border-left: 4px solid #27ae60;
-        }
+        .bad { border-left: 4px solid #e74c3c; }
+        .good { border-left: 4px solid #27ae60; }
         .column h2 {
             margin: 0 0 15px 0;
             color: #34495e;
             display: flex;
-            align-items: center; /* Untuk sejajar vertikal */
-            min-height: 2em; /* Pastikan tinggi sama */
+            align-items: center;
+            min-height: 2em;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            flex-grow: 1; /* Biar isi ul mengisi sisa ruang */
-        }
+        ul { list-style-type: none; padding: 0; flex-grow: 1; }
         li {
             margin-bottom: 10px;
             padding: 8px;
@@ -58,19 +50,10 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        li:hover {
-            background-color: #d5dbdb;
-        }
-        .bad li {
-            border-left: 3px solid #e74c3c;
-        }
-        .good li {
-            border-left: 3px solid #27ae60;
-        }
-        .emoji {
-            font-size: 1.2em;
-            margin-right: 8px;
-        }
+        li:hover { background-color: #d5dbdb; }
+        .bad li { border-left: 3px solid #e74c3c; }
+        .good li { border-left: 3px solid #27ae60; }
+        .emoji { font-size: 1.2em; margin-right: 8px; }
         .quote {
             margin-top: 15px;
             padding: 10px;
@@ -83,13 +66,13 @@
             font-size: 0.95em;
         }
 
-        /* Sticky Note Styles */
+        /* Sticky Note */
         .sticky-note {
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 280px; /* Diperbesar 30px dari 250px */
-            min-height: 280px; /* Diperbesar sedikit untuk quote baru */
+            width: 280px;
+            min-height: 280px;
             background-color: #fff9c4;
             border: 2px solid #f57f17;
             border-radius: 8px;
@@ -99,30 +82,21 @@
             z-index: 1000;
             font-size: 0.9em;
             line-height: 1.4;
-            resize: both; /* Bisa di-resize */
-            overflow: auto;
+            resize: both;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
-        .sticky-note:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
+        .sticky-note:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
         .sticky-note-header {
             font-weight: bold;
             margin-bottom: 10px;
             color: #d84315;
+            cursor: pointer;
+            user-select: none;
         }
-        .sticky-note-content {
-            color: #333;
-        }
-        .line-left {
-            text-align: left;
-            display: block;
-            margin-bottom: 2px;
-        }
-        .line-right {
-            text-align: right;
-            display: block;
-            margin-bottom: 8px;
-        }
+        .sticky-note-content { color: #333; }
+        .line-left { text-align: left; display: block; margin-bottom: 2px; }
+        .line-right { text-align: right; display: block; margin-bottom: 8px; }
         .reminder-quote {
             margin-top: 15px;
             padding: 10px;
@@ -135,96 +109,66 @@
             font-size: 0.85em;
             border-top: 1px solid #e0e0e0;
         }
+        .collapse-quote {
+            margin-top: 12px;
+            padding: 12px;
+            background-color: #ffeb99;
+            border-radius: 6px;
+            font-style: italic;
+            text-align: center;
+            color: #b35f00;
+            font-weight: bold;
+            display: none;
+            border: 1px dashed #f57f17;
+        }
 
-        /* Modal untuk gambar */
+        /* Modal styles tetap sama */
         .modal {
             display: none;
             position: fixed;
             z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
             overflow: auto;
             background-color: rgba(0,0,0,0.9);
         }
         .modal-content {
             margin: auto;
-            display: block;
             width: 80%;
-            max-width: 700px;
+            max-width: 800px;
             padding: 20px;
             position: relative;
             top: 50%;
             transform: translateY(-50%);
-            text-align: center;
-            background-color: rgba(255,255,255,0.95); /* Tambahan: background semi-putih untuk kontras */
+            background-color: rgba(255,255,255,0.95);
             border-radius: 8px;
-            color: #333; /* Warna teks gelap untuk kontras */
+            color: #333;
+            text-align: center;
         }
         .close {
             color: #aaa;
             position: absolute;
-            top: 15px;
-            right: 35px;
+            top: 10px;
+            right: 25px;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
         }
-        .close:hover,
-        .close:focus {
-            color: #333; /* Ubah hover ke gelap untuk kontras dengan background putih */
-            text-decoration: none;
-        }
-        .gallery {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .gallery img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 8px;
-        }
-        @media only screen and (max-width: 700px) {
-            .gallery {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+        .close:hover { color: #333; }
 
-        /* Modal untuk Baca Buku - spesifik */
+        /* Khusus modal baca buku */
         #bacaBukuModal .modal-content {
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             text-align: left;
-            max-width: 800px;
         }
-        #bacaBukuModal img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .caption-title {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        .caption-list {
-            list-style-type: decimal;
-            padding-left: 20px;
-            margin-bottom: 10px;
-        }
+        .caption-title { font-weight: bold; font-size: 1.3em; margin: 15px 0; color: #2c3e50; }
         .caption-list li {
             margin-bottom: 12px;
-            line-height: 1.5;
-            background-color: #f9f9f9;
             padding: 10px;
+            background: #f9f9f9;
             border-radius: 4px;
-            color: #333; /* Pastikan teks gelap */
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -257,10 +201,10 @@
         </div>
     </div>
 
-    <!-- Sticky Note -->
+    <!-- Sticky Note dengan Collapse -->
     <div class="sticky-note" id="stickyNote">
-        <div class="sticky-note-header">Catatan Penting:</div>
-        <div class="sticky-note-content">
+        <div class="sticky-note-header" id="stickyHeader">Catatan Penting: (klik kiri untuk buka/tutup)</div>
+        <div class="sticky-note-content" id="stickyContent">
             <span class="line-left">Kalau lu kebanyakan ngomong,</span>
             <span class="line-right">bisa jadi lu tong kosong.</span>
             <span class="line-left">Kalau lu kebanyakan mikir,</span>
@@ -273,22 +217,20 @@
             <span class="line-right">bisa jadi lu gampang dibohongin.</span>
             <span class="line-left">Kalau lu kebanyakan Scroll Medsos,</span>
             <span class="line-right">bisa jadi otaklu udah busuk !</span>
-            <p class="reminder-quote">"Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)</p>
-        </div>
-    </div>
 
-    <!-- Modal Gambar untuk 3gp -->
-    <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
-        <div class="modal-content">
-            <div class="gallery">
-                <img src="01.jpg" alt="Gambar 01">
-                <img src="02.jpg" alt="Gambar 02">
+            <p class="reminder-quote">
+                "Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)
+            </p>
+
+            <div class="collapse-quote" id="collapseQuote">
+                "Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>
+                Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu."
             </div>
         </div>
     </div>
 
-    <!-- Modal Baca Buku -->
+    <!-- Modal tetap sama -->
+    <div id="imageModal" class="modal"><span class="close">&times;</span><div class="modal-content"><div class="gallery"><img src="01.jpg" alt="01"><img src="02.jpg" alt="02"></div></div></div>
     <div id="bacaBukuModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content">
@@ -309,29 +251,21 @@
     </div>
 
     <script>
-        // Drag functionality untuk sticky note dengan right-click
+        // Drag sticky note dengan klik kanan (tetap)
         const stickyNote = document.getElementById('stickyNote');
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
 
-        stickyNote.addEventListener('contextmenu', function(e) {
-            e.preventDefault(); // Cegah menu konteks default
-            isDragging = true;
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
+        stickyNote.addEventListener('contextmenu', e => e.preventDefault());
 
-            if (e.target === stickyNote || stickyNote.contains(e.target)) {
+        stickyNote.addEventListener('mousedown', e => {
+            if (e.button === 2) { // klik kanan = drag
                 initialX = e.clientX - xOffset;
                 initialY = e.clientY - yOffset;
+                isDragging = true;
             }
         });
 
-        document.addEventListener('mousemove', function(e) {
+        document.addEventListener('mousemove', e => {
             if (isDragging) {
                 e.preventDefault();
                 currentX = e.clientX - initialX;
@@ -342,45 +276,32 @@
             }
         });
 
-        document.addEventListener('mouseup', function() {
-            isDragging = false;
-        });
+        document.addEventListener('mouseup', () => isDragging = false);
 
-        // Fungsi untuk modal gambar 3gp
-        const imageModal = document.getElementById('imageModal');
-        const threegpLi = document.getElementById('threegp-li');
-        const imageCloseBtn = document.querySelector('#imageModal .close');
+        // Collapse quote dengan klik kiri pada header
+        const header = document.getElementById('stickyHeader');
+        const collapse = document.getElementById('collapseQuote');
 
-        threegpLi.addEventListener('click', function() {
-            imageModal.style.display = 'block';
-        });
-
-        imageCloseBtn.addEventListener('click', function() {
-            imageModal.style.display = 'none';
-        });
-
-        // Fungsi untuk modal Baca Buku
-        const bacaBukuModal = document.getElementById('bacaBukuModal');
-        const bacaBukuLi = document.getElementById('baca-buku-li');
-        const bacaBukuCloseBtn = document.querySelector('#bacaBukuModal .close');
-
-        bacaBukuLi.addEventListener('click', function() {
-            bacaBukuModal.style.display = 'block';
-        });
-
-        bacaBukuCloseBtn.addEventListener('click', function() {
-            bacaBukuModal.style.display = 'none';
-        });
-
-        // Tutup modal dengan klik luar
-        window.addEventListener('click', function(event) {
-            if (event.target == imageModal) {
-                imageModal.style.display = 'none';
-            }
-            if (event.target == bacaBukuModal) {
-                bacaBukuModal.style.display = 'none';
+        header.addEventListener('click', () => {
+            if (collapse.style.display === 'block') {
+                collapse.style.display = 'none';
+            } else {
+                collapse.style.display = 'block';
             }
         });
+
+        // Modal 3gp
+        document.getElementById('threegp-li').onclick = () => document.getElementById('imageModal').style.display = 'block';
+        // Modal Baca Buku
+        document.getElementById('baca-buku-li').onclick = () => document.getElementById('bacaBukuModal').style.display = 'block';
+
+        // Tutup semua modal
+        document.querySelectorAll('.close').forEach(btn => {
+            btn.onclick = () => btn.parentElement.parentElement.style.display = 'none';
+        });
+        window.onclick = e => {
+            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+        };
     </script>
 </body>
 </html>
