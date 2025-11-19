@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catatan Dopamin Hit: Baik & Buruk</title>
+    <!-- FAVICON BARU -->
+    <link rel="icon" type="image/x-icon" href="dopamin.ico">
+    <!-- Jika masih tidak muncul, coba tambahkan juga versi png 32x32 (opsional) -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="dopamin.png"> -->
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,13 +48,14 @@
             background: #fff9c4; border: 2px solid #f57f17; border-radius: 8px;
             padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: move;
             z-index: 1000; font-size: 0.9em; line-height: 1.4; resize: both; overflow: auto;
-            user-select: none; /* biar teks tidak keselekt saat drag */
+            user-select: none;
         }
         .sticky-note:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
         .sticky-note-header {
             font-weight: bold; margin-bottom: 10px; color: #d84315;
-            cursor: pointer;
+            cursor: pointer; user-select: none;
         }
+        .sticky-note-header:hover { text-decoration: underline; }
         .line-left { text-align: left; display: block; margin-bottom: 2px; }
         .line-right { text-align: right; display: block; margin-bottom: 8px; }
         .reminder-quote {
@@ -63,9 +69,9 @@
             position: absolute; width: 280px; background: #ffeb99; padding: 15px;
             border: 2px solid #f57f17; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             font-weight: bold; text-align: center; color: #b35f00; line-height: 1.5;
-            z-index: 999; display: none; opacity: 0; transition: opacity 0.3s;
+            z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease;
         }
-        #externalCollapse.show { opacity: 1; }
+        #externalCollapse.show { display: block; opacity: 1; }
 
         /* Modal */
         .modal {
@@ -159,26 +165,26 @@
         const header = document.getElementById('stickyHeader');
         const collapse = document.getElementById('externalCollapse');
         let isDragging = false;
-        let dragOffsetX = 0, dragOffsetY = 0;
+        let offsetX = 0, offsetY = 0;
 
-        // Klik kanan + drag untuk geser sticky note
+        // Drag dengan klik kanan
         sticky.addEventListener('contextmenu', e => e.preventDefault());
 
         sticky.addEventListener('mousedown', e => {
-            if (e.button === 2) { // klik kanan
+            if (e.button === 2) { // klik kanan = mulai drag
                 isDragging = true;
-                dragOffsetX = e.clientX - sticky.getBoundingClientRect().left;
-                dragOffsetY = e.clientY - sticky.getBoundingClientRect().top;
+                offsetX = e.clientX - sticky.getBoundingClientRect().left;
+                offsetY = e.clientY - sticky.getBoundingClientRect().top;
                 sticky.style.cursor = 'grabbing';
             }
         });
 
         document.addEventListener('mousemove', e => {
             if (isDragging) {
-                sticky.style.left = (e.clientX - dragOffsetX) + 'px';
-                sticky.style.top = (e.clientY - dragOffsetY) + 'px';
+                sticky.style.left = (e.clientX - offsetX) + 'px';
+                sticky.style.top = (e.clientY - offsetY) + 'px';
                 sticky.style.right = 'auto';
-                positionCollapse();
+                if (collapse.classList.contains('show')) positionCollapse();
             }
         });
 
@@ -187,28 +193,28 @@
             sticky.style.cursor = 'move';
         });
 
-        // Klik kiri pada header untuk toggle collapse
+        // Klik kiri pada header = toggle collapse
         header.addEventListener('click', e => {
-            e.stopPropagation(); // agar tidak ikut trigger drag
+            e.stopPropagation(); // cegah event bubbling
             collapse.classList.toggle('show');
             if (collapse.classList.contains('show')) positionCollapse();
         });
 
-        // Klik di luar collapse atau sticky untuk menutup collapse
+        // Klik di luar sticky/collapse = tutup collapse
         document.addEventListener('click', e => {
             if (!sticky.contains(e.target) && !collapse.contains(e.target)) {
                 collapse.classList.remove('show');
             }
         });
 
-        // Posisi collapse cerdas (kiri/kanan sticky note)
+        // Posisi collapse otomatis kiri/kanan
         function positionCollapse() {
             if (!collapse.classList.contains('show')) return;
             const rect = sticky.getBoundingClientRect();
             const spaceLeft = rect.left;
             const spaceRight = window.innerWidth - rect.right;
 
-            if (spaceLeft > spaceRight + 300) { // lebih banyak ruang di kiri
+            if (spaceLeft > spaceRight + 300) {
                 collapse.style.left = (rect.right + 10) + 'px';
                 collapse.style.right = 'auto';
             } else {
@@ -218,10 +224,11 @@
             collapse.style.top = rect.top + 'px';
         }
 
-        // Resize window juga update posisi
-        window.addEventListener('resize', positionCollapse);
+        window.addEventListener('resize', () => {
+            if (collapse.classList.contains('show')) positionCollapse();
+        });
 
-        // Modal tetap berfungsi
+        // Modal
         document.getElementById('threegp-li').onclick = () => document.getElementById('imageModal').style.display = 'block';
         document.getElementById('baca-buku-li').onclick = () => document.getElementById('bacaBukuModal').style.display = 'block';
         document.querySelectorAll('.close').forEach(c => c.onclick = () => c.closest('.modal').style.display = 'none');
