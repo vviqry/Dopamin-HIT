@@ -43,11 +43,12 @@
             background: #fff9c4; border: 2px solid #f57f17; border-radius: 8px;
             padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: move;
             z-index: 1000; font-size: 0.9em; line-height: 1.4; resize: both; overflow: auto;
+            user-select: none; /* biar teks tidak keselekt saat drag */
         }
         .sticky-note:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
         .sticky-note-header {
             font-weight: bold; margin-bottom: 10px; color: #d84315;
-            cursor: pointer; user-select: none;
+            cursor: pointer;
         }
         .line-left { text-align: left; display: block; margin-bottom: 2px; }
         .line-right { text-align: right; display: block; margin-bottom: 8px; }
@@ -57,13 +58,14 @@
             font-size: 0.85em; border-top: 1px solid #e0e0e0;
         }
 
-        /* Collapse yang muncul di luar sticky note */
+        /* Collapse di luar sticky note */
         #externalCollapse {
             position: absolute; width: 280px; background: #ffeb99; padding: 15px;
             border: 2px solid #f57f17; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             font-weight: bold; text-align: center; color: #b35f00; line-height: 1.5;
-            z-index: 999; display: none; transition: opacity 0.3s;
+            z-index: 999; display: none; opacity: 0; transition: opacity 0.3s;
         }
+        #externalCollapse.show { opacity: 1; }
 
         /* Modal */
         .modal {
@@ -131,7 +133,7 @@
         Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu."
     </div>
 
-    <!-- Modal 3gp & Baca Buku tetap sama -->
+    <!-- Modal tetap sama -->
     <div id="imageModal" class="modal"><span class="close">&times;</span><div class="modal-content"><div class="gallery"><img src="01.jpg"><img src="02.jpg"></div></div></div>
     <div id="bacaBukuModal" class="modal">
         <span class="close">&times;</span>
@@ -156,56 +158,70 @@
         const sticky = document.getElementById('stickyNote');
         const header = document.getElementById('stickyHeader');
         const collapse = document.getElementById('externalCollapse');
-        let isDragging = false, xOffset = 0, yOffset = 0;
+        let isDragging = false;
+        let dragOffsetX = 0, dragOffsetY = 0;
 
-        // Drag dengan klik kanan
+        // Klik kanan + drag untuk geser sticky note
         sticky.addEventListener('contextmenu', e => e.preventDefault());
+
         sticky.addEventListener('mousedown', e => {
-            if (e.button === 2) {
+            if (e.button === 2) { // klik kanan
                 isDragging = true;
-                xOffset = e.clientX - sticky.getBoundingClientRect().left;
-                yOffset = e.clientY - sticky.getBoundingClientRect().top;
+                dragOffsetX = e.clientX - sticky.getBoundingClientRect().left;
+                dragOffsetY = e.clientY - sticky.getBoundingClientRect().top;
+                sticky.style.cursor = 'grabbing';
             }
         });
+
         document.addEventListener('mousemove', e => {
             if (isDragging) {
-                sticky.style.left = (e.clientX - xOffset) + 'px';
-                sticky.style.top = (e.clientY - yOffset) + 'px';
+                sticky.style.left = (e.clientX - dragOffsetX) + 'px';
+                sticky.style.top = (e.clientY - dragOffsetY) + 'px';
                 sticky.style.right = 'auto';
-                positionCollapse(); // update posisi collapse saat digeser
-            }
-        });
-        document.addEventListener('mouseup', () => isDragging = false);
-
-        // Toggle collapse dengan klik kiri pada header
-        header.addEventListener('click', () => {
-            if (collapse.style.display === 'block') {
-                collapse.style.display = 'none';
-            } else {
-                collapse.style.display = 'block';
                 positionCollapse();
             }
         });
 
-        // Posisi collapse otomatis (kiri/kanan sticky note)
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            sticky.style.cursor = 'move';
+        });
+
+        // Klik kiri pada header untuk toggle collapse
+        header.addEventListener('click', e => {
+            e.stopPropagation(); // agar tidak ikut trigger drag
+            collapse.classList.toggle('show');
+            if (collapse.classList.contains('show')) positionCollapse();
+        });
+
+        // Klik di luar collapse atau sticky untuk menutup collapse
+        document.addEventListener('click', e => {
+            if (!sticky.contains(e.target) && !collapse.contains(e.target)) {
+                collapse.classList.remove('show');
+            }
+        });
+
+        // Posisi collapse cerdas (kiri/kanan sticky note)
         function positionCollapse() {
+            if (!collapse.classList.contains('show')) return;
             const rect = sticky.getBoundingClientRect();
             const spaceLeft = rect.left;
             const spaceRight = window.innerWidth - rect.right;
 
-            if (spaceLeft > spaceRight) {
-                // lebih banyak ruang di kiri → muncul di kanan sticky
+            if (spaceLeft > spaceRight + 300) { // lebih banyak ruang di kiri
                 collapse.style.left = (rect.right + 10) + 'px';
                 collapse.style.right = 'auto';
             } else {
-                // muncul di kiri sticky
                 collapse.style.left = 'auto';
                 collapse.style.right = (window.innerWidth - rect.left + 10) + 'px';
             }
             collapse.style.top = rect.top + 'px';
         }
 
-        // Modal
+        // Resize window juga update posisi
+        window.addEventListener('resize', positionCollapse);
+
+        // Modal tetap berfungsi
         document.getElementById('threegp-li').onclick = () => document.getElementById('imageModal').style.display = 'block';
         document.getElementById('baca-buku-li').onclick = () => document.getElementById('bacaBukuModal').style.display = 'block';
         document.querySelectorAll('.close').forEach(c => c.onclick = () => c.closest('.modal').style.display = 'none');
