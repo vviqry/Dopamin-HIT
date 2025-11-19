@@ -60,7 +60,7 @@
             font-size: 0.85em; border-top: 1px solid #e0e0e0;
         }
 
-        /* Collapse langsung di samping (hanya 10px jarak) */
+        /* Collapse SUPER RAPET (jarak cuma 5px, mirip jarak kolom Baik & Buruk) */
         #externalCollapse {
             position: absolute; width: 280px; background: #ffeb99; padding: 15px;
             border: 2px solid #f57f17; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
@@ -126,13 +126,13 @@
         </div>
     </div>
 
-    <!-- Collapse di samping sticky note (jarak cuma 10px) -->
+    <!-- Collapse SUPER DEKAT (jarak cuma 5px) -->
     <div id="externalCollapse">
         "Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>
         Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu."
     </div>
 
-    <!-- Modal -->
+    <!-- Modal tetap -->
     <div id="imageModal" class="modal"><span class="close">&times;</span><div class="modal-content"><div class="gallery"><img src="01.jpg"><img src="02.jpg"></div></div></div>
     <div id="bacaBukuModal" class="modal">
         <span class="close">&times;</span>
@@ -183,7 +183,7 @@
             sticky.style.cursor = 'move';
         });
 
-        // Klik kiri pada header = toggle collapse (langsung di samping, jarak cuma 10px)
+        // Klik kiri pada header = toggle collapse
         header.addEventListener('click', e => {
             e.stopPropagation();
             collapse.classList.toggle('show');
@@ -197,20 +197,18 @@
             }
         });
 
-        // Posisi collapse RAPET di samping sticky note (hanya 10px jarak)
+        // Posisi collapse SUPER DEKAT (cuma 5px, mirip jarak kolom Baik & Buruk)
         function positionCollapse() {
             const rect = sticky.getBoundingClientRect();
             const spaceLeft = rect.left;
             const spaceRight = window.innerWidth - rect.right;
 
             if (spaceLeft >= spaceRight) {
-                // lebih banyak ruang di kiri → muncul di kanan sticky (cuma 10px)
-                collapse.style.left = (rect.right + 10) + 'px';
+                collapse.style.left = (rect.right + 5) + 'px';   // cuma 5px di kanan
                 collapse.style.right = 'auto';
             } else {
-                // muncul di kiri sticky (cuma 10px)
                 collapse.style.left = 'auto';
-                collapse.style.right = (window.innerWidth - rect.left + 10) + 'px';
+                collapse.style.right = (window.innerWidth - rect.left + 5) + 'px'; // cuma 5px di kiri
             }
             collapse.style.top = rect.top + 'px';
         }
