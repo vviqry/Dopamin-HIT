@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catatan Dopamin Hit: Baik & Buruk</title>
-    <!-- FAVICON BARU -->
     <link rel="icon" type="image/x-icon" href="dopamin.ico">
-    <!-- Jika masih tidak muncul, coba tambahkan juga versi png 32x32 (opsional) -->
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="dopamin.png"> -->
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,7 +60,7 @@
             font-size: 0.85em; border-top: 1px solid #e0e0e0;
         }
 
-        /* Collapse di luar sticky note */
+        /* Collapse langsung di samping (hanya 10px jarak) */
         #externalCollapse {
             position: absolute; width: 280px; background: #ffeb99; padding: 15px;
             border: 2px solid #f57f17; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
@@ -74,10 +70,7 @@
         #externalCollapse.show { display: block; opacity: 1; }
 
         /* Modal */
-        .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-            width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow: auto;
-        }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow: auto; }
         .modal-content {
             margin: auto; width: 80%; max-width: 800px; padding: 20px;
             position: relative; top: 50%; transform: translateY(-50%);
@@ -133,13 +126,13 @@
         </div>
     </div>
 
-    <!-- Collapse di luar sticky note -->
+    <!-- Collapse di samping sticky note (jarak cuma 10px) -->
     <div id="externalCollapse">
         "Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>
         Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu."
     </div>
 
-    <!-- Modal tetap sama -->
+    <!-- Modal -->
     <div id="imageModal" class="modal"><span class="close">&times;</span><div class="modal-content"><div class="gallery"><img src="01.jpg"><img src="02.jpg"></div></div></div>
     <div id="bacaBukuModal" class="modal">
         <span class="close">&times;</span>
@@ -169,16 +162,14 @@
 
         // Drag dengan klik kanan
         sticky.addEventListener('contextmenu', e => e.preventDefault());
-
         sticky.addEventListener('mousedown', e => {
-            if (e.button === 2) { // klik kanan = mulai drag
+            if (e.button === 2) {
                 isDragging = true;
                 offsetX = e.clientX - sticky.getBoundingClientRect().left;
                 offsetY = e.clientY - sticky.getBoundingClientRect().top;
                 sticky.style.cursor = 'grabbing';
             }
         });
-
         document.addEventListener('mousemove', e => {
             if (isDragging) {
                 sticky.style.left = (e.clientX - offsetX) + 'px';
@@ -187,37 +178,37 @@
                 if (collapse.classList.contains('show')) positionCollapse();
             }
         });
-
         document.addEventListener('mouseup', () => {
             isDragging = false;
             sticky.style.cursor = 'move';
         });
 
-        // Klik kiri pada header = toggle collapse
+        // Klik kiri pada header = toggle collapse (langsung di samping, jarak cuma 10px)
         header.addEventListener('click', e => {
-            e.stopPropagation(); // cegah event bubbling
+            e.stopPropagation();
             collapse.classList.toggle('show');
             if (collapse.classList.contains('show')) positionCollapse();
         });
 
-        // Klik di luar sticky/collapse = tutup collapse
+        // Klik di luar = tutup collapse
         document.addEventListener('click', e => {
             if (!sticky.contains(e.target) && !collapse.contains(e.target)) {
                 collapse.classList.remove('show');
             }
         });
 
-        // Posisi collapse otomatis kiri/kanan
+        // Posisi collapse RAPET di samping sticky note (hanya 10px jarak)
         function positionCollapse() {
-            if (!collapse.classList.contains('show')) return;
             const rect = sticky.getBoundingClientRect();
             const spaceLeft = rect.left;
             const spaceRight = window.innerWidth - rect.right;
 
-            if (spaceLeft > spaceRight + 300) {
+            if (spaceLeft >= spaceRight) {
+                // lebih banyak ruang di kiri → muncul di kanan sticky (cuma 10px)
                 collapse.style.left = (rect.right + 10) + 'px';
                 collapse.style.right = 'auto';
             } else {
+                // muncul di kiri sticky (cuma 10px)
                 collapse.style.left = 'auto';
                 collapse.style.right = (window.innerWidth - rect.left + 10) + 'px';
             }
