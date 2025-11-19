@@ -49,7 +49,7 @@
         .sticky-note:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
         .sticky-note-header {
             font-weight: bold; margin-bottom: 10px; color: #d84315;
-            cursor: pointer; user-select: none;
+            cursor: pointer; user-select: none; position: relative;
         }
         .sticky-note-header:hover { text-decoration: underline; }
         .line-left { text-align: left; display: block; margin-bottom: 2px; }
@@ -60,14 +60,19 @@
             font-size: 0.85em; border-top: 1px solid #e0e0e0;
         }
 
-        /* Collapse SUPER DEKAT BANGET (jarak cuma 5px) */
-        #externalCollapse {
+        /* Left Popover (muncul di kiri sticky note) */
+        .popover {
             position: absolute; width: 280px; background: #ffeb99; padding: 15px;
-            border: 2px solid #f57f17; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            border: 2px solid #f57f17; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             font-weight: bold; text-align: center; color: #b35f00; line-height: 1.5;
-            z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease;
+            z-index: 999; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            right: 100%; top: 0; margin-right: 8px; /* jarak rapet 8px */
         }
-        #externalCollapse.show { display: block; opacity: 1; }
+        .popover.show {
+            opacity: 1;
+            visibility: visible;
+        }
 
         /* Modal */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow: auto; }
@@ -79,8 +84,6 @@
         .close { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 40px; cursor: pointer; }
         .close:hover { color: #333; }
         #bacaBukuModal .modal-content { max-height: 85vh; overflow-y: auto; text-align: left; }
-        .caption-title { font-weight: bold; font-size: 1.3em; margin: 15px 0; color: #2c3e50; }
-        .caption-list li { margin-bottom: 12px; padding: 10px; background: #f9f9f9; border-radius: 4px; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -112,9 +115,16 @@
         </div>
     </div>
 
-    <!-- Sticky Note -->
+    <!-- Sticky Note dengan Left Popover -->
     <div class="sticky-note" id="stickyNote">
         <div class="sticky-note-header" id="stickyHeader">Catatan Penting:</div>
+
+        <!-- Popover muncul di kiri sticky note -->
+        <div class="popover" id="leftPopover">
+            "Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>
+            Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu."
+        </div>
+
         <div class="sticky-note-content">
             <span class="line-left">Kalau lu kebanyakan ngomong,</span><span class="line-right">bisa jadi lu tong kosong.</span>
             <span class="line-left">Kalau lu kebanyakan mikir,</span><span class="line-right">bisa jadi lu depresi.</span>
@@ -126,13 +136,7 @@
         </div>
     </div>
 
-    <!-- Collapse RAPET BANGET -->
-    <div id="externalCollapse">
-        "Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>
-        Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu."
-    </div>
-
-    <!-- Modal -->
+    <!-- Modal tetap -->
     <div id="imageModal" class="modal"><span class="close">&times;</span><div class="modal-content"><div class="gallery"><img src="01.jpg"><img src="02.jpg"></div></div></div>
     <div id="bacaBukuModal" class="modal">
         <span class="close">&times;</span>
@@ -156,7 +160,7 @@
     <script>
         const sticky = document.getElementById('stickyNote');
         const header = document.getElementById('stickyHeader');
-        const collapse = document.getElementById('externalCollapse');
+        const popover = document.getElementById('leftPopover');
         let isDragging = false;
         let offsetX = 0, offsetY = 0;
 
@@ -175,7 +179,6 @@
                 sticky.style.left = (e.clientX - offsetX) + 'px';
                 sticky.style.top = (e.clientY - offsetY) + 'px';
                 sticky.style.right = 'auto';
-                if (collapse.classList.contains('show')) positionCollapse();
             }
         });
         document.addEventListener('mouseup', () => {
@@ -183,41 +186,20 @@
             sticky.style.cursor = 'move';
         });
 
-        // Klik kiri pada header = toggle collapse
+        // Klik kiri pada header = toggle left popover
         header.addEventListener('click', e => {
             e.stopPropagation();
-            collapse.classList.toggle('show');
-            if (collapse.classList.contains('show')) positionCollapse();
+            popover.classList.toggle('show');
         });
 
-        // Klik di luar = tutup collapse
+        // Klik di luar sticky note = tutup popover
         document.addEventListener('click', e => {
-            if (!sticky.contains(e.target) && !collapse.contains(e.target)) {
-                collapse.classList.remove('show');
+            if (!sticky.contains(e.target)) {
+                popover.classList.remove('show');
             }
         });
 
-        // Posisi collapse RAPET BANGET (cuma 5px)
-        function positionCollapse() {
-            const rect = sticky.getBoundingClientRect();
-            const spaceLeft = rect.left;
-            const spaceRight = window.innerWidth - rect.right;
-
-            if (spaceLeft >= spaceRight) {
-                collapse.style.left = (rect.right + 5) + 'px';
-                collapse.style.right = 'auto';
-            } else {
-                collapse.style.left = 'auto';
-                collapse.style.right = (window.innerWidth - rect.left + 5) + 'px';
-            }
-            collapse.style.top = rect.top + 'px';
-        }
-
-        window.addEventListener('resize', () => {
-            if (collapse.classList.contains('show')) positionCollapse();
-        });
-
-        // Modal
+        // Modal tetap
         document.getElementById('threegp-li').onclick = () => document.getElementById('imageModal').style.display = 'block';
         document.getElementById('baca-buku-li').onclick = () => document.getElementById('bacaBukuModal').style.display = 'block';
         document.querySelectorAll('.close').forEach(c => c.onclick = () => c.closest('.modal').style.display = 'none');
