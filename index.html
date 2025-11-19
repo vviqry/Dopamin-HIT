@@ -6,7 +6,7 @@
     <title>Catatan Dopamin Hit: Baik & Buruk</title>
     <link rel="icon" type="image/x-icon" href="dopamin.ico">
 
-    <!-- Bootstrap 5 CDN (hanya untuk Popover yang bener-bener muncul) -->
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -63,23 +63,28 @@
             font-size: 0.85em; border-top: 1px solid #e0e0e0;
         }
 
-        /* Popover Bootstrap custom style */
+        /* Custom Popover (kuning sticky note + di kiri) */
         .popover {
-            background: #ffeb99; border: 2px solid #f57f17; max-width: 300px;
+            background: #ffeb99 !important;
+            border: 2px solid #f57f17 !important;
+            max-width: 300px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-        .popover-header { background: #ffeb99; color: #b35f00; font-weight: bold; border-bottom: none; }
-        .popover-body { color: #b35f00; font-weight: bold; text-align: center; }
-
-        /* Modal tetap */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow: auto; }
-        .modal-content {
-            margin: auto; width: 80%; max-width: 800px; padding: 20px;
-            position: relative; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.95); border-radius: 8px; color: #333; text-align: center;
+        .popover-header {
+            background: #ffeb99 !important;
+            color: #b35f00 !important;
+            font-weight: bold;
+            border-bottom: none !important;
         }
-        .close { color: #aaa; position: absolute; top: 10px; right: 25px; font-size: 40px; cursor: pointer; }
-        .close:hover { color: #333; }
+        .popover-body {
+            color: #b35f00 !important;
+            font-weight: bold;
+            text-align: center;
+        }
+        .popover.bs-popover-left > .popover-arrow::before,
+        .popover.bs-popover-left > .popover-arrow::after {
+            border-left-color: #f57f17 !important;
+        }
     </style>
 </head>
 <body>
@@ -111,13 +116,14 @@
         </div>
     </div>
 
-    <!-- Sticky Note dengan Bootstrap Popover -->
+    <!-- Sticky Note dengan Popover di KIRI -->
     <div class="sticky-note" id="stickyNote">
         <div class="sticky-note-header"
              data-bs-toggle="popover"
              data-bs-placement="left"
              data-bs-trigger="click"
              data-bs-html="true"
+             data-bs-title=""
              data-bs-content="Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu.">
             Catatan Penting:
         </div>
@@ -142,17 +148,27 @@
             <div class="caption-title">9 Kebiasaan Sehari-hari yang Sering Dilakukan Orang Bodoh untuk Berpura-pura Pintar</div>
             <ol class="caption-list">
                 <li>Menggunakan Kata-Kata Besar yang Salah<br>Orang yang berpura-pura pintar sering kali berusaha membuat kesan dengan menggunakan kata-kata besar atau teknis. Namun, sering kali mereka salah dalam menggunakannya atau menggunakan kata-kata tersebut tanpa pemahaman yang benar.</li>
-                <!-- ... isi list lainnya sama ... -->
+                <li>Menolak Pengetahuan Baru<br>Mereka cenderung merasa bahwa apa yang mereka ketahui sudah cukup dan tidak ada lagi yang perlu dipelajari. Penolakan terhadap informasi baru ini menunjukkan keterbatasan pemikiran mereka.</li>
+                <li>Menolak Mengakui Kesalahan<br>Orang yang berpura-pura pintar sangat jarang mengakui kesalahan mereka. Mereka sering kali berusaha mempertahankan citra sempurna, bahkan ketika jelas bahwa mereka melakukan kesalahan.</li>
+                <li>Gagal untuk Mendengarkan<br>Mereka lebih suka berbicara daripada mendengarkan. Ini menunjukkan ketidakmampuan mereka untuk memahami perspektif orang lain dan mengapresiasi pemikiran yang berbeda.</li>
+                <li>Kurangnya Kemampuan Berpikir Kritis<br>Mereka mungkin terlihat percaya diri, tetapi mereka tidak mampu berpikir secara kritis atau menganalisis situasi dengan cermat. Biasanya, mereka menerima hal-hal begitu saja tanpa menggali lebih dalam.</li>
+                <li>Melebih-lebihkan Kecerdasan Mereka<br>Salah satu tanda utama orang yang berpura-pura pintar adalah mereka sering melebih-lebihkan kemampuan intelektual mereka. Mereka merasa harus selalu tampil lebih cerdas daripada orang lain.</li>
+                <li>Memiliki Perspektif yang Sempit<br>Mereka sering hanya melihat dunia dari sudut pandang mereka sendiri dan enggan untuk membuka pikiran terhadap ide-ide baru atau perspektif yang lebih luas.</li>
+                <li>Kesulitan dalam Berbicara Secara Bermakna<br>Mereka sering kali kesulitan dalam berpartisipasi dalam percakapan yang mendalam atau bermakna, cenderung menghindari diskusi yang memerlukan pemikiran lebih dalam.</li>
+                <li>Menunjukkan Kurangnya Empati<br>Orang yang berpura-pura pintar sering kali tidak memiliki empati yang cukup terhadap orang lain. Mereka lebih fokus pada diri sendiri dan kurang memperhatikan perasaan atau kebutuhan orang lain.</li>
             </ol>
         </div>
     </div>
 
     <script>
-        // Inisialisasi semua popover Bootstrap
+        // Inisialisasi Popover Bootstrap
         const popoverTrigger = document.querySelector('[data-bs-toggle="popover"]');
         const popover = new bootstrap.Popover(popoverTrigger, {
+            placement: 'left',
             trigger: 'click',
-            html: true
+            html: true,
+            title: '',
+            content: 'Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu.'
         });
 
         // Drag sticky note dengan klik kanan
@@ -180,7 +196,14 @@
             sticky.style.cursor = 'move';
         });
 
-        // Modal tetap
+        // Tutup popover saat klik di luar
+        document.addEventListener('click', e => {
+            if (!sticky.contains(e.target)) {
+                popover.hide();
+            }
+        });
+
+        // Modal
         document.getElementById('threegp-li').onclick = () => document.getElementById('imageModal').style.display = 'block';
         document.getElementById('baca-buku-li').onclick = () => document.getElementById('bacaBukuModal').style.display = 'block';
         document.querySelectorAll('.close').forEach(c => c.onclick = () => c.closest('.modal').style.display = 'none');
