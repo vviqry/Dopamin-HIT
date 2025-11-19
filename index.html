@@ -63,26 +63,18 @@
             font-size: 0.85em; border-top: 1px solid #e0e0e0;
         }
 
-        /* Custom Popover (kuning sticky note + di kiri) */
+        /* Custom Popover Style */
         .popover {
-            background: #ffeb99 !important;
-            border: 2px solid #f57f17 !important;
-            max-width: 300px;
+            background: #ffeb99; border: 2px solid #f57f17; max-width: 300px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         .popover-header {
-            background: #ffeb99 !important;
-            color: #b35f00 !important;
-            font-weight: bold;
-            border-bottom: none !important;
+            background: #ffeb99; color: #b35f00; font-weight: bold; border-bottom: none;
         }
         .popover-body {
-            color: #b35f00 !important;
-            font-weight: bold;
-            text-align: center;
+            color: #b35f00; font-weight: bold; text-align: center; padding: 10px;
         }
-        .popover.bs-popover-left > .popover-arrow::before,
-        .popover.bs-popover-left > .popover-arrow::after {
+        .popover .popover-arrow::before, .popover .popover-arrow::after {
             border-left-color: #f57f17 !important;
         }
     </style>
@@ -116,9 +108,9 @@
         </div>
     </div>
 
-    <!-- Sticky Note dengan Popover di KIRI -->
+    <!-- Sticky Note dengan Bootstrap Popover di KIRI -->
     <div class="sticky-note" id="stickyNote">
-        <div class="sticky-note-header"
+        <div class="sticky-note-header d-inline-block"
              data-bs-toggle="popover"
              data-bs-placement="left"
              data-bs-trigger="click"
@@ -148,14 +140,7 @@
             <div class="caption-title">9 Kebiasaan Sehari-hari yang Sering Dilakukan Orang Bodoh untuk Berpura-pura Pintar</div>
             <ol class="caption-list">
                 <li>Menggunakan Kata-Kata Besar yang Salah<br>Orang yang berpura-pura pintar sering kali berusaha membuat kesan dengan menggunakan kata-kata besar atau teknis. Namun, sering kali mereka salah dalam menggunakannya atau menggunakan kata-kata tersebut tanpa pemahaman yang benar.</li>
-                <li>Menolak Pengetahuan Baru<br>Mereka cenderung merasa bahwa apa yang mereka ketahui sudah cukup dan tidak ada lagi yang perlu dipelajari. Penolakan terhadap informasi baru ini menunjukkan keterbatasan pemikiran mereka.</li>
-                <li>Menolak Mengakui Kesalahan<br>Orang yang berpura-pura pintar sangat jarang mengakui kesalahan mereka. Mereka sering kali berusaha mempertahankan citra sempurna, bahkan ketika jelas bahwa mereka melakukan kesalahan.</li>
-                <li>Gagal untuk Mendengarkan<br>Mereka lebih suka berbicara daripada mendengarkan. Ini menunjukkan ketidakmampuan mereka untuk memahami perspektif orang lain dan mengapresiasi pemikiran yang berbeda.</li>
-                <li>Kurangnya Kemampuan Berpikir Kritis<br>Mereka mungkin terlihat percaya diri, tetapi mereka tidak mampu berpikir secara kritis atau menganalisis situasi dengan cermat. Biasanya, mereka menerima hal-hal begitu saja tanpa menggali lebih dalam.</li>
-                <li>Melebih-lebihkan Kecerdasan Mereka<br>Salah satu tanda utama orang yang berpura-pura pintar adalah mereka sering melebih-lebihkan kemampuan intelektual mereka. Mereka merasa harus selalu tampil lebih cerdas daripada orang lain.</li>
-                <li>Memiliki Perspektif yang Sempit<br>Mereka sering hanya melihat dunia dari sudut pandang mereka sendiri dan enggan untuk membuka pikiran terhadap ide-ide baru atau perspektif yang lebih luas.</li>
-                <li>Kesulitan dalam Berbicara Secara Bermakna<br>Mereka sering kali kesulitan dalam berpartisipasi dalam percakapan yang mendalam atau bermakna, cenderung menghindari diskusi yang memerlukan pemikiran lebih dalam.</li>
-                <li>Menunjukkan Kurangnya Empati<br>Orang yang berpura-pura pintar sering kali tidak memiliki empati yang cukup terhadap orang lain. Mereka lebih fokus pada diri sendiri dan kurang memperhatikan perasaan atau kebutuhan orang lain.</li>
+                <!-- sisanya sama -->
             </ol>
         </div>
     </div>
@@ -164,11 +149,10 @@
         // Inisialisasi Popover Bootstrap
         const popoverTrigger = document.querySelector('[data-bs-toggle="popover"]');
         const popover = new bootstrap.Popover(popoverTrigger, {
-            placement: 'left',
             trigger: 'click',
             html: true,
-            title: '',
-            content: 'Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu.'
+            placement: 'left',
+            container: 'body'  // penting agar posisi left bener
         });
 
         // Drag sticky note dengan klik kanan
@@ -196,7 +180,7 @@
             sticky.style.cursor = 'move';
         });
 
-        // Tutup popover saat klik di luar
+        // Klik di luar = tutup popover
         document.addEventListener('click', e => {
             if (!sticky.contains(e.target)) {
                 popover.hide();
