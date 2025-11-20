@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catatan Dopamin Hit: Baik & Buruk</title>
-    <link rel="icon" type="image/x-icon" href="dopamin.ico">
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Tambahan: Icon web -->
+    <link rel="icon" href="dopamin.ico" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,64 +14,219 @@
             padding: 20px;
             background-color: #f4f4f4;
             color: #333;
-            position: relative;
+            position: relative; /* Untuk sticky note */
         }
-        h1 { text-align: center; color: #2c3e50; }
-        .container { display: flex; gap: 20px; justify-content: space-between; }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
         .column {
-            flex: 1; background: white; padding: 20px; border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column;
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
         }
-        .bad { border-left: 4px solid #e74c3c; }
-        .good { border-left: 4px solid #27ae60; }
-        .column h2 { margin: 0 0 15px 0; color: #34495e; display: flex; align-items: center; min-height: 2em; }
-        ul { list-style: none; padding: 0; flex-grow: 1; }
+        .bad {
+            border-left: 4px solid #e74c3c;
+        }
+        .good {
+            border-left: 4px solid #27ae60;
+        }
+        .column h2 {
+            margin: 0 0 15px 0;
+            color: #34495e;
+            display: flex;
+            align-items: center;
+            min-height: 2em;
+            cursor: pointer; /* Tambahan agar judul kolom baik terasa bisa diklik */
+            transition: opacity 0.3s;
+        }
+        .column h2:hover {
+            opacity: 0.8;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            flex-grow: 1;
+        }
         li {
-            margin-bottom: 10px; padding: 8px; background: #ecf0f1; border-radius: 4px;
-            cursor: pointer; transition: background 0.3s;
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        li:hover { background: #d5dbdb; }
-        .bad li { border-left: 3px solid #e74c3c; }
-        .good li { border-left: 3px solid #27ae60; }
-        .emoji { font-size: 1.2em; margin-right: 8px; }
+        li:hover {
+            background-color: #d5dbdb;
+        }
+        .bad li {
+            border-left: 3px solid #e74c3c;
+        }
+        .good li {
+            border-left: 3px solid #27ae60;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
         .quote {
-            margin-top: 15px; padding: 10px; background: #d5f4e6; border-left: 4px solid #27ae60;
-            border-radius: 4px; font-style: italic; text-align: center; color: #2c3e50; font-size: 0.95em;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #d5f4e6;
+            border-left: 4px solid #27ae60;
+            border-radius: 4px;
+            font-style: italic;
+            text-align: center;
+            color: #2c3e50;
+            font-size: 0.95em;
         }
 
-        /* Sticky Note */
+        /* Sticky Note Styles */
         .sticky-note {
-            position: fixed; top: 20px; right: 20px; width: 280px; min-height: 280px;
-            background: #fff9c4; border: 2px solid #f57f17; border-radius: 8px;
-            padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: move;
-            z-index: 1000; font-size: 0.9em; line-height: 1.4; resize: both; overflow: auto;
-            user-select: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 280px;
+            min-height: 280px;
+            background-color: #fff9c4;
+            border: 2px solid #f57f17;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: move;
+            z-index: 1000;
+            font-size: 0.9em;
+            line-height: 1.4;
+            resize: both;
+            overflow: auto;
         }
-        .sticky-note:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
+        .sticky-note:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
         .sticky-note-header {
-            font-weight: bold; margin-bottom: 10px; color: #d84315;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #d84315;
         }
-        .line-left { text-align: left; display: block; margin-bottom: 2px; }
-        .line-right { text-align: right; display: block; margin-bottom: 8px; }
+        .sticky-note-content {
+            color: #333;
+        }
+        .line-left {
+            text-align: left;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .line-right {
+            text-align: right;
+            display: block;
+            margin-bottom: 8px;
+        }
         .reminder-quote {
-            margin-top: 15px; padding: 10px; background: #fff3cd; border-left: 3px solid #ffc107;
-            border-radius: 4px; font-style: italic; text-align: center; color: #856404;
-            font-size: 0.85em; border-top: 1px solid #e0e0e0;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #fff3cd;
+            border-left: 3px solid #ffc107;
+            border-radius: 4px;
+            font-style: italic;
+            text-align: center;
+            color: #856404;
+            font-size: 0.85em;
+            border-top: 1px solid #e0e0e0;
         }
 
-        /* Custom Popover Style */
-        .popover {
-            background: #ffeb99; border: 2px solid #f57f17; max-width: 300px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        /* Modal untuk gambar */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
         }
-        .popover-header {
-            background: #ffeb99; color: #b35f00; font-weight: bold; border-bottom: none;
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            padding: 20px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 8px;
+            color: #333;
         }
-        .popover-body {
-            color: #b35f00; font-weight: bold; text-align: center; padding: 10px;
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
-        .popover .popover-arrow::before, .popover .popover-arrow::after {
-            border-left-color: #f57f17 !important;
+        .close:hover,
+        .close:focus {
+            color: #333;
+            text-decoration: none;
+        }
+        .gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .gallery img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Modal untuk Baca Buku & Dopamin Hit Baik */
+        #bacaBukuModal .modal-content,
+        #goodHeaderModal .modal-content {
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: left;
+            max-width: 800px;
+        }
+        #bacaBukuModal img,
+        #goodHeaderModal img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .caption-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .caption-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        .caption-list li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            color: #333;
         }
     </style>
 </head>
@@ -96,7 +247,8 @@
             </ul>
         </div>
         <div class="column good">
-            <h2><span class="emoji">✅</span>Dopamin Hit Baik</h2>
+            <!-- Judul Dopamin Hit Baik jadi bisa diklik -->
+            <h2 id="good-header"><span class="emoji">✅</span>Dopamin Hit Baik</h2>
             <ul>
                 <li id="baca-buku-li"><span class="emoji">✅</span>BACA BUKU</li>
                 <li><span class="emoji">✅</span>OLAHRAGA</li>
@@ -108,31 +260,38 @@
         </div>
     </div>
 
-    <!-- Sticky Note dengan Bootstrap Popover di KIRI -->
+    <!-- Sticky Note -->
     <div class="sticky-note" id="stickyNote">
-        <div class="sticky-note-header d-inline-block"
-             data-bs-toggle="popover"
-             data-bs-placement="left"
-             data-bs-trigger="click"
-             data-bs-html="true"
-             data-bs-title=""
-             data-bs-content="Jika keras terhadap diri sendiri, dunia akan lunak padamu.<br>Bila lunak terhadap diri sendiri, dunia akan keras terhadapmu.">
-            Catatan Penting:
-        </div>
-
+        <div class="sticky-note-header">Catatan Penting:</div>
         <div class="sticky-note-content">
-            <span class="line-left">Kalau lu kebanyakan ngomong,</span><span class="line-right">bisa jadi lu tong kosong.</span>
-            <span class="line-left">Kalau lu kebanyakan mikir,</span><span class="line-right">bisa jadi lu depresi.</span>
-            <span class="line-left">Kalau lu kebanyakan nangis,</span><span class="line-right">bisa jadi lu kehilangan jati diri.</span>
-            <span class="line-left">Kalau lu kebanyakan peduli,</span><span class="line-right">bisa jadi lu kehilangan respek.</span>
-            <span class="line-left">Kalau lu kebanyakan percaya,</span><span class="line-right">bisa jadi lu gampang dibohongin.</span>
-            <span class="line-left">Kalau lu kebanyakan Scroll Medsos,</span><span class="line-right">bisa jadi otaklu udah busuk !</span>
+            <span class="line-left">Kalau lu kebanyakan ngomong,</span>
+            <span class="line-right">bisa jadi lu tong kosong.</span>
+            <span class="line-left">Kalau lu kebanyakan mikir,</span>
+            <span class="line-right">bisa jadi lu depresi.</span>
+            <span class="line-left">Kalau lu kebanyakan nangis,</span>
+            <span class="line-right">bisa jadi lu kehilangan jati diri.</span>
+            <span class="line-left">Kalau lu kebanyakan peduli,</span>
+            <span class="line-right">bisa jadi lu kehilangan respek.</span>
+            <span class="line-left">Kalau lu kebanyakan percaya,</span>
+            <span class="line-right">bisa jadi lu gampang dibohongin.</span>
+            <span class="line-left">Kalau lu kebanyakan Scroll Medsos,</span>
+            <span class="line-right">bisa jadi otaklu udah busuk !</span>
             <p class="reminder-quote">"Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)</p>
         </div>
     </div>
 
-    <!-- Modal tetap -->
-    <div id="imageModal" class="modal"><span class="close">&times;</span><div class="modal-content"><div class="gallery"><img src="01.jpg"><img src="02.jpg"></div></div></div>
+    <!-- Modal Gambar untuk 3gp -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <div class="gallery">
+                <img src="01.jpg" alt="Gambar 01">
+                <img src="02.jpg" alt="Gambar 02">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Baca Buku -->
     <div id="bacaBukuModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content">
@@ -140,58 +299,85 @@
             <div class="caption-title">9 Kebiasaan Sehari-hari yang Sering Dilakukan Orang Bodoh untuk Berpura-pura Pintar</div>
             <ol class="caption-list">
                 <li>Menggunakan Kata-Kata Besar yang Salah<br>Orang yang berpura-pura pintar sering kali berusaha membuat kesan dengan menggunakan kata-kata besar atau teknis. Namun, sering kali mereka salah dalam menggunakannya atau menggunakan kata-kata tersebut tanpa pemahaman yang benar.</li>
-                <!-- sisanya sama -->
+                <li>Menolak Pengetahuan Baru<br>Mereka cenderung merasa bahwa apa yang mereka ketahui sudah cukup dan tidak ada lagi yang perlu dipelajari. Penolakan terhadap informasi baru ini menunjukkan keterbatasan pemikiran mereka.</li>
+                <li>Menolak Mengakui Kesalahan<br>Orang yang berpura-pura pintar sangat jarang mengakui kesalahan mereka. Mereka sering kali berusaha mempertahankan citra sempurna, bahkan ketika jelas bahwa mereka melakukan kesalahan.</li>
+                <li>Gagal untuk Mendengarkan<br>Mereka lebih suka berbicara daripada mendengarkan. Ini menunjukkan ketidakmampuan mereka untuk memahami perspektif orang lain dan mengapresiasi pemikiran yang berbeda.</li>
+                <li>Kurangnya Kemampuan Berpikir Kritis<br>Mereka mungkin terlihat percaya diri, tetapi mereka tidak mampu berpikir secara kritis atau menganalisis situasi dengan cermat. Biasanya, mereka menerima hal-hal begitu saja tanpa menggali lebih dalam.</li>
+                <li>Melebih-lebihkan Kecerdasan Mereka<br>Salah satu tanda utama orang yang berpura-pura pintar adalah mereka sering melebih-lebihkan kemampuan intelektual mereka. Mereka merasa harus selalu tampil lebih cerdas daripada orang lain.</li>
+                <li>Memiliki Perspektif yang Sempit<br>Mereka sering hanya melihat dunia dari sudut pandang mereka sendiri dan enggan untuk membuka pikiran terhadap ide-ide baru atau perspektif yang lebih luas.</li>
+                <li>Kesulitan dalam Berbicara Secara Bermakna<br>Mereka sering kali kesulitan dalam berpartisipasi dalam percakapan yang mendalam atau bermakna, cenderung menghindari diskusi yang memerlukan pemikiran lebih dalam.</li>
+                <li>Menunjukkan Kurangnya Empati<br>Orang yang berpura-pura pintar sering kali tidak memiliki empati yang cukup terhadap orang lain. Mereka lebih fokus pada diri sendiri dan kurang memperhatikan perasaan atau kebutuhan orang lain.</li>
             </ol>
         </div>
     </div>
 
+    <!-- Modal baru: Klik judul "Dopamin Hit Baik" -->
+    <div id="goodHeaderModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img src="04.jpg" alt="Dopamin Hit Baik">
+        </div>
+    </div>
+
     <script>
-        // Inisialisasi Popover Bootstrap
-        const popoverTrigger = document.querySelector('[data-bs-toggle="popover"]');
-        const popover = new bootstrap.Popover(popoverTrigger, {
-            trigger: 'click',
-            html: true,
-            placement: 'left',
-            container: 'body'  // penting agar posisi left bener
-        });
+        // Drag sticky note (klik kanan)
+        const stickyNote = document.getElementById('stickyNote');
+        let isDragging = false;
+        let currentX = 0;
+        let currentY = 0;
+        let initialX = 0;
+        let initialY = 0;
+        let xOffset = 0;
+        let yOffset = 0;
 
-        // Drag sticky note dengan klik kanan
-        const sticky = document.getElementById('stickyNote');
-        let isDragging = false, offsetX, offsetY;
+        stickyNote.addEventListener('contextmenu', e => e.preventDefault());
 
-        sticky.addEventListener('contextmenu', e => e.preventDefault());
-        sticky.addEventListener('mousedown', e => {
+        stickyNote.addEventListener('mousedown', e => {
             if (e.button === 2) {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
                 isDragging = true;
-                offsetX = e.clientX - sticky.getBoundingClientRect().left;
-                offsetY = e.clientY - sticky.getBoundingClientRect().top;
-                sticky.style.cursor = 'grabbing';
             }
         });
+
         document.addEventListener('mousemove', e => {
             if (isDragging) {
-                sticky.style.left = (e.clientX - offsetX) + 'px';
-                sticky.style.top = (e.clientY - offsetY) + 'px';
-                sticky.style.right = 'auto';
-            }
-        });
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            sticky.style.cursor = 'move';
-        });
-
-        // Klik di luar = tutup popover
-        document.addEventListener('click', e => {
-            if (!sticky.contains(e.target)) {
-                popover.hide();
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+                stickyNote.style.transform = `translate(${currentX}px, ${currentY}px)`;
             }
         });
 
-        // Modal
-        document.getElementById('threegp-li').onclick = () => document.getElementById('imageModal').style.display = 'block';
-        document.getElementById('baca-buku-li').onclick = () => document.getElementById('bacaBukuModal').style.display = 'block';
-        document.querySelectorAll('.close').forEach(c => c.onclick = () => c.closest('.modal').style.display = 'none');
-        window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+        document.addEventListener('mouseup', () => isDragging = false);
+
+        // Modal 3gp
+        const imageModal = document.getElementById('imageModal');
+        const threegpLi = document.getElementById('threegp-li');
+        const imageClose = imageModal.querySelector('.close');
+        threegpLi.onclick = () => imageModal.style.display = 'block';
+        imageClose.onclick = () => imageModal.style.display = 'none';
+
+        // Modal Baca Buku
+        const bacaBukuModal = document.getElementById('bacaBukuModal');
+        const bacaBukuLi = document.getElementById('baca-buku-li');
+        const bacaClose = bacaBukuModal.querySelector('.close');
+        bacaBukuLi.onclick = () => bacaBukuModal.style.display = 'block';
+        bacaClose.onclick = () => bacaBukuModal.style.display = 'none';
+
+        // Modal baru: Klik judul Dopamin Hit Baik
+        const goodHeaderModal = document.getElementById('goodHeaderModal');
+        const goodHeader = document.getElementById('good-header');
+        const goodHeaderClose = goodHeaderModal.querySelector('.close');
+        goodHeader.onclick = () => goodHeaderModal.style.display = 'block';
+        goodHeaderClose.onclick = () => goodHeaderModal.style.display = 'none';
+
+        // Tutup semua modal saat klik luar
+        window.onclick = e => {
+            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+        };
     </script>
 </body>
 </html>
