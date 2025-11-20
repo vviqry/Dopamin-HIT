@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catatan Dopamin Hit: Baik & Buruk</title>
-    <!-- Tambah icon web -->
-    <link rel="icon" href="dopamin.ico" type="image/x-icon">
+    <link rel="icon" href="dopamin.ico" type="image/x-icon"> <!-- Icon Tab Browser -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -104,10 +103,10 @@
             resize: both;
             overflow: auto;
         }
-        .sticky-note:hover {box-shadow: 0 6px 12px rgba(0,0,0,0.3);}
-        .sticky-note-header {font-weight: bold; margin-bottom: 10px; color: #d84315;}
-        .line-left {text-align: left; display: block; margin-bottom: 2px;}
-        .line-right {text-align: right; display: block; margin-bottom: 8px;}
+        .sticky-note:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
+        .sticky-note-header { font-weight: bold; margin-bottom: 10px; color: #d84315; }
+        .line-left { text-align: left; display: block; margin-bottom: 2px; }
+        .line-right { text-align: right; display: block; margin-bottom: 8px; }
         .reminder-quote {
             margin-top: 15px;
             padding: 10px;
@@ -121,7 +120,7 @@
             border-top: 1px solid #e0e0e0;
         }
 
-        /* Modal */
+        /* Modal Umum */
         .modal {
             display: none;
             position: fixed;
@@ -133,41 +132,45 @@
         }
         .modal-content {
             margin: auto;
-            padding: 20px;
+            padding: 10px; /* Padding 10px di 4 sisi */
             background-color: rgba(255,255,255,0.95);
             border-radius: 8px;
-            color: #333;
             text-align: center;
-            max-width: 90%;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
+            max-width: 800px;
         }
         .close {
             color: #aaa;
             position: absolute;
-            top: 10px;
-            right: 25px;
+            top: 15px;
+            right: 35px;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
         }
-        .close:hover {color: #333;}
+        .close:hover { color: #333; }
 
-        /* Khusus modal Dopamin Hit Baik */
-        #goodHeaderModal img {
-            width: 700px;
-            height: 700px;
+        /* Khusus gambar tunggal 600x600 */
+        .single-img {
+            width: 600px;
+            height: 600px;
             object-fit: contain;
-            border-radius: 10px;
+            margin: 10px auto;
+            display: block;
         }
 
-        /* Modal Baca Buku & 3gp tetap seperti sebelumnya */
-        #bacaBukuModal .modal-content {max-height: 80vh; overflow-y: auto; text-align: left; max-width: 800px;}
-        #bacaBukuModal img {max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;}
-        .caption-title {font-weight: bold; font-size: 1.2em; margin-bottom: 15px; color: #2c3e50;}
-        .caption-list {list-style-type: decimal; padding-left: 20px;}
-        .caption-list li {margin-bottom: 12px; line-height: 1.5; background-color: #f9f9f9; padding: 10px; border-radius: 4px;}
+        /* Modal Baca Buku */
+        #bacaBukuModal .modal-content { max-height: 80vh; overflow-y: auto; text-align: left; }
+        #bacaBukuModal img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; }
+        .caption-title { font-weight: bold; font-size: 1.2em; margin-bottom: 15px; color: #2c3e50; }
+        .caption-list { list-style-type: decimal; padding-left: 20px; }
+        .caption-list li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -187,12 +190,11 @@
             </ul>
         </div>
         <div class="column good">
-            <!-- Judul Dopamin Hit Baik jadi clickable -->
-            <h2 id="good-header"><span class="emoji">✅</span>Dopamin Hit Baik</h2>
+            <h2><span class="emoji">✅</span>Dopamin Hit Baik</h2>
             <ul>
                 <li id="baca-buku-li"><span class="emoji">✅</span>BACA BUKU</li>
                 <li><span class="emoji">✅</span>OLAHRAGA</li>
-                <li><span class="emoji">✅</span>FOKUS & KERJA KERAS</li>
+                <li id="fokus-li"><span class="emoji">✅</span>FOKUS & KERJA KERAS</li>
             </ul>
             <p class="quote">"Terbiasa menahan rasa sakit"</p>
             <p class="quote">"Pemenang tidak pernah berhenti, orang yang berhenti tak akan pernah menang"</p>
@@ -214,22 +216,12 @@
         </div>
     </div>
 
-    <!-- Modal untuk klik "Dopamin Hit Baik" (04.jpg 700x700) -->
-    <div id="goodHeaderModal" class="modal">
-        <span class="close">&times;</span>
-        <div class="modal-content">
-            <img src="04.jpg" alt="Dopamin Hit Baik">
-        </div>
-    </div>
-
     <!-- Modal 3gp -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content">
-            <div class="gallery">
-                <img src="01.jpg" alt="Gambar 01">
-                <img src="02.jpg" alt="Gambar 02">
-            </div>
+            <img src="01.jpg" alt="01" class="single-img">
+            <img src="02.jpg" alt="02" class="single-img">
         </div>
     </div>
 
@@ -244,7 +236,7 @@
                 <li>Menolak Pengetahuan Baru<br>Mereka cenderung merasa bahwa apa yang mereka ketahui sudah cukup dan tidak ada lagi yang perlu dipelajari. Penolakan terhadap informasi baru ini menunjukkan keterbatasan pemikiran mereka.</li>
                 <li>Menolak Mengakui Kesalahan<br>Orang yang berpura-pura pintar sangat jarang mengakui kesalahan mereka. Mereka sering kali berusaha mempertahankan citra sempurna, bahkan ketika jelas bahwa mereka melakukan kesalahan.</li>
                 <li>Gagal untuk Mendengarkan<br>Mereka lebih suka berbicara daripada mendengarkan. Ini menunjukkan ketidakmampuan mereka untuk memahami perspektif orang lain dan mengapresiasi pemikiran yang berbeda.</li>
-                <li>Kurang Kamu Berpikir Kritis<br>Mereka mungkin terlihat percaya diri, tetapi mereka tidak mampu berpikir secara kritis atau menganalisis situasi dengan cermat. Biasanya, mereka menerima hal-hal begitu saja tanpa menggali lebih dalam.</li>
+                <li>Kurangnya Kemampuan Berpikir Kritis<br>Mereka mungkin terlihat percaya diri, tetapi mereka tidak mampu berpikir secara kritis atau menganalisis situasi dengan cermat. Biasanya, mereka menerima hal-hal begitu saja tanpa menggali lebih dalam.</li>
                 <li>Melebih-lebihkan Kecerdasan Mereka<br>Salah satu tanda utama orang yang berpura-pura pintar adalah mereka sering melebih-lebihkan kemampuan intelektual mereka. Mereka merasa harus selalu tampil lebih cerdas daripada orang lain.</li>
                 <li>Memiliki Perspektif yang Sempit<br>Mereka sering hanya melihat dunia dari sudut pandang mereka sendiri dan enggan untuk membuka pikiran terhadap ide-ide baru atau perspektif yang lebih luas.</li>
                 <li>Kesulitan dalam Berbicara Secara Bermakna<br>Mereka sering kali kesulitan dalam berpartisipasi dalam percakapan yang mendalam atau bermakna, cenderung menghindari diskusi yang memerlukan pemikiran lebih dalam.</li>
@@ -253,42 +245,37 @@
         </div>
     </div>
 
+    <!-- Modal Fokus & Kerja Keras -->
+    <div id="fokusModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img src="04.jpg" alt="Fokus & Kerja Keras" class="single-img">
+        </div>
+    </div>
+
     <script>
-        // Drag sticky note (right-click)
+        // Drag sticky note (klik kanan)
         const stickyNote = document.getElementById('stickyNote');
         let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
         stickyNote.addEventListener('contextmenu', e => { e.preventDefault(); isDragging = true; initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; });
         document.addEventListener('mousemove', e => { if (isDragging) { e.preventDefault(); currentX = e.clientX - initialX; currentY = e.clientY - initialY; xOffset = currentX; yOffset = currentY; stickyNote.style.transform = `translate(${currentX}px, ${currentY}px)`; }});
         document.addEventListener('mouseup', () => isDragging = false);
 
-        // Modal Dopamin Hit Baik (klik header hijau)
-        const goodHeader = document.getElementById('good-header');
-        const goodModal = document.getElementById('goodHeaderModal');
-        const goodClose = goodModal.querySelector('.close');
-        goodHeader.style.cursor = 'pointer';
-        goodHeader.addEventListener('click', () => goodModal.style.display = 'block');
-        goodClose.addEventListener('click', () => goodModal.style.display = 'none');
-
         // Modal 3gp
-        const threegpLi = document.getElementById('threegp-li');
         const imageModal = document.getElementById('imageModal');
-        const imageClose = imageModal.querySelector('.close');
-        threegpLi.addEventListener('click', () => imageModal.style.display = 'block');
-        imageClose.addEventListener('click', () => imageModal.style.display = 'none');
+        document.getElementById('threegp-li').onclick = () => imageModal.style.display = 'block';
 
         // Modal Baca Buku
-        const bacaBukuLi = document.getElementById('baca-buku-li');
         const bacaBukuModal = document.getElementById('bacaBukuModal');
-        const bacaClose = bacaBukuModal.querySelector('.close');
-        bacaBukuLi.addEventListener('click', () => bacaBukuModal.style.display = 'block');
-        bacaClose.addEventListener('click', () => bacaBukuModal.style.display = 'none');
+        document.getElementById('baca-buku-li').onclick = () => bacaBukuModal.style.display = 'block';
 
-        // Tutup semua modal dengan klik luar
-        window.addEventListener('click', e => {
-            if (e.target === goodModal || e.target === imageModal || e.target === bacaBukuModal) {
-                goodModal.style.display = imageModal.style.display = bacaBukuModal.style.display = 'none';
-            }
-        });
+        // Modal Fokus & Kerja Keras
+        const fokusModal = document.getElementById('fokusModal');
+        document.getElementById('fokus-li').onclick = () => fokusModal.style.display = 'block';
+
+        // Tutup semua modal
+        document.querySelectorAll('.close').forEach(btn => btn.onclick = () => btn.closest('.modal').style.display = 'none');
+        window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
     </script>
 </body>
 </html>
