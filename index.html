@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catatan Dopamin Hit: Baik & Buruk</title>
-    <link rel="icon" href="dopamin.ico" type="image/x-icon"> <!-- Icon Tab Browser -->
+    <link rel="icon" type="image/x-icon" href="dopamin.ico"> <!-- Icon tab browser -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -103,10 +103,10 @@
             resize: both;
             overflow: auto;
         }
-        .sticky-note:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
-        .sticky-note-header { font-weight: bold; margin-bottom: 10px; color: #d84315; }
-        .line-left { text-align: left; display: block; margin-bottom: 2px; }
-        .line-right { text-align: right; display: block; margin-bottom: 8px; }
+        .sticky-note:hover {box-shadow: 0 6px 12px rgba(0,0,0,0.3);}
+        .sticky-note-header {font-weight: bold; margin-bottom: 10px; color: #d84315;}
+        .line-left {text-align: left; display: block; margin-bottom: 2px;}
+        .line-right {text-align: right; display: block; margin-bottom: 8px;}
         .reminder-quote {
             margin-top: 15px;
             padding: 10px;
@@ -130,14 +130,6 @@
             overflow: auto;
             background-color: rgba(0,0,0,0.9);
         }
-        .modal-content {
-            margin: auto;
-            padding: 10px; /* Padding 10px di 4 sisi */
-            background-color: rgba(255,255,255,0.95);
-            border-radius: 8px;
-            text-align: center;
-            max-width: 800px;
-        }
         .close {
             color: #aaa;
             position: absolute;
@@ -147,29 +139,36 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .close:hover { color: #333; }
+        .close:hover {color: #fff;}
 
-        /* Khusus gambar tunggal 600x600 */
-        .single-img {
+        /* Modal 3gp & Baca Buku (tetap seperti sebelumnya) */
+        .modal-content {
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 8px;
+            color: #333;
+            max-width: 800px;
+            text-align: center;
+        }
+        #bacaBukuModal .modal-content {text-align: left; max-height: 80vh; overflow-y: auto;}
+
+        /* Khusus Modal Fokus & Kerja Keras */
+        #fokusModal .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px !important; /* Padding 10px semua sisi */
+            background-color: transparent !important;
+            max-width: none;
+            width: auto;
+        }
+        #fokusModal img {
             width: 600px;
             height: 600px;
             object-fit: contain;
-            margin: 10px auto;
-            display: block;
-        }
-
-        /* Modal Baca Buku */
-        #bacaBukuModal .modal-content { max-height: 80vh; overflow-y: auto; text-align: left; }
-        #bacaBukuModal img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; }
-        .caption-title { font-weight: bold; font-size: 1.2em; margin-bottom: 15px; color: #2c3e50; }
-        .caption-list { list-style-type: decimal; padding-left: 20px; }
-        .caption-list li {
-            margin-bottom: 12px;
-            line-height: 1.5;
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-radius: 4px;
-            color: #333;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -217,19 +216,18 @@
     </div>
 
     <!-- Modal 3gp -->
-    <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
+    <div id="imageModal" class="modal"><span class="close">&times;</span>
         <div class="modal-content">
-            <img src="01.jpg" alt="01" class="single-img">
-            <img src="02.jpg" alt="02" class="single-img">
+            <div class="gallery">
+                <img src="01.jpg" alt="01"><img src="02.jpg" alt="02">
+            </div>
         </div>
     </div>
 
     <!-- Modal Baca Buku -->
-    <div id="bacaBukuModal" class="modal">
-        <span class="close">&times;</span>
+    <div id="bacaBukuModal" class="modal"><span class="close">&times;</span>
         <div class="modal-content">
-            <img src="03.jpg" alt="Foto Buku">
+            <img src="03.jpg" alt="Buku">
             <div class="caption-title">9 Kebiasaan Sehari-hari yang Sering Dilakukan Orang Bodoh untuk Berpura-pura Pintar</div>
             <ol class="caption-list">
                 <li>Menggunakan Kata-Kata Besar yang Salah<br>Orang yang berpura-pura pintar sering kali berusaha membuat kesan dengan menggunakan kata-kata besar atau teknis. Namun, sering kali mereka salah dalam menggunakannya atau menggunakan kata-kata tersebut tanpa pemahaman yang benar.</li>
@@ -245,37 +243,52 @@
         </div>
     </div>
 
-    <!-- Modal Fokus & Kerja Keras -->
-    <div id="fokusModal" class="modal">
-        <span class="close">&times;</span>
+    <!-- Modal Fokus & Kerja Keras (Khusus 04.jpg) -->
+    <div id="fokusModal" class="modal"><span class="close">&times;</span>
         <div class="modal-content">
-            <img src="04.jpg" alt="Fokus & Kerja Keras" class="single-img">
+            <img src="04.jpg" alt="Fokus & Kerja Keras">
         </div>
     </div>
 
     <script>
         // Drag sticky note (klik kanan)
         const stickyNote = document.getElementById('stickyNote');
-        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
-        stickyNote.addEventListener('contextmenu', e => { e.preventDefault(); isDragging = true; initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; });
-        document.addEventListener('mousemove', e => { if (isDragging) { e.preventDefault(); currentX = e.clientX - initialX; currentY = e.clientY - initialY; xOffset = currentX; yOffset = currentY; stickyNote.style.transform = `translate(${currentX}px, ${currentY}px)`; }});
+        let isDragging = false, xOffset = 0, yOffset = 0, initialX, initialY;
+
+        stickyNote.addEventListener('contextmenu', e => e.preventDefault());
+        stickyNote.addEventListener('mousedown', e => {
+            if (e.button === 2) {
+                isDragging = true;
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+            }
+        });
+        document.addEventListener('mousemove', e => {
+            if (isDragging) {
+                e.preventDefault();
+                xOffset = e.clientX - initialX;
+                yOffset = e.clientY - initialY;
+                stickyNote.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            }
+        });
         document.addEventListener('mouseup', () => isDragging = false);
 
         // Modal 3gp
-        const imageModal = document.getElementById('imageModal');
-        document.getElementById('threegp-li').onclick = () => imageModal.style.display = 'block';
+        document.getElementById('threegp-li').onclick = () => document.getElementById('imageModal').style.display = 'block';
 
         // Modal Baca Buku
-        const bacaBukuModal = document.getElementById('bacaBukuModal');
-        document.getElementById('baca-buku-li').onclick = () => bacaBukuModal.style.display = 'block';
+        document.getElementById('baca-buku-li').onclick = () => document.getElementById('bacaBukuModal').style.display = 'block';
 
         // Modal Fokus & Kerja Keras
-        const fokusModal = document.getElementById('fokusModal');
-        document.getElementById('fokus-li').onclick = () => fokusModal.style.display = 'block';
+        document.getElementById('fokus-li').onclick = () => document.getElementById('fokusModal').style.display = 'block';
 
         // Tutup semua modal
-        document.querySelectorAll('.close').forEach(btn => btn.onclick = () => btn.closest('.modal').style.display = 'none');
-        window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+        document.querySelectorAll('.close').forEach(btn => {
+            btn.onclick = () => btn.parentElement.style.display = 'none';
+        });
+        window.onclick = e => {
+            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+        };
     </script>
 </body>
 </html>
