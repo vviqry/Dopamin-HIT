@@ -6,15 +6,7 @@
     <title>Catatan Dopamin Hit: Baik & Buruk</title>
     <link rel="icon" type="image/x-icon" href="dopamin.ico">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-            position: relative;
-        }
+        body {font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; color: #333; position: relative;}
         h1 {text-align: center; color: #2c3e50;}
         .container {display: flex; justify-content: space-between; gap: 20px;}
         .column {flex: 1; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column;}
@@ -28,16 +20,8 @@
         .good li {border-left: 3px solid #27ae60;}
         .emoji {font-size: 1.2em; margin-right: 8px;}
         .quote {
-            margin-top: 15px;
-            padding: 10px;
-            background-color: #d5f4e6;
-            border-left: 4px solid #27ae60;
-            border-radius: 4px;
-            font-style: italic;
-            text-align: center;
-            color: #2c3e50;
-            font-size: 0.95em;
-            cursor: pointer;
+            margin-top: 15px; padding: 10px; background-color: #d5f4e6; border-left: 4px solid #27ae60;
+            border-radius: 4px; font-style: italic; text-align: center; color: #2c3e50; font-size: 0.95em; cursor: pointer;
         }
 
         /* Sticky Note */
@@ -49,7 +33,6 @@
         .sticky-note:hover {box-shadow: 0 6px 12px rgba(0,0,0,0.3);}
         .sticky-note-header {font-weight: bold; margin-bottom: 10px; color: #d84315;}
         .line-left {text-align: left; display: block; margin-bottom: 2px;}
-        .inline-block {display: inline-block;}
         .line-right {text-align: right; display: block; margin-bottom: 8px;}
         .reminder-quote {
             margin-top: 15px; padding: 10px; background-color: #fff3cd; border-left: 3px solid #ffc107;
@@ -61,7 +44,7 @@
         .close {color: #aaa; position: absolute; top: 15px; right: 35px; font-size: 40px; font-weight: bold; cursor: pointer;}
         .close:hover {color: #fff;}
 
-        /* Modal 01 & 02 (3gp) */
+        /* Modal 01-02 & Baca Buku */
         .modal-content {
             margin: auto; display: block; width: 80%; max-width: 700px; padding: 20px; position: relative;
             top: 50%; transform: translateY(-50%); text-align: center; background-color: rgba(255,255,255,0.95); border-radius: 8px; color: #333;
@@ -69,7 +52,6 @@
         .gallery {display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;}
         .gallery img {max-width: 300px; height: auto; border-radius: 8px;}
 
-        /* Modal Baca Buku (03.jpg + teks) */
         #bacaBukuModal .modal-content {max-height: 80vh; overflow-y: auto; text-align: left; max-width: 800px;}
         #bacaBukuModal img {max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;}
         .caption-title {font-weight: bold; font-size: 1.2em; margin-bottom: 15px; color: #2c3e50;}
@@ -83,7 +65,7 @@
         <div class="column bad">
             <h2><span class="emoji">❌</span>Dopamin Hit Buruk</h2>
             <ul>
-                <li><span class="emoji">❌</span>SOSMED</li>
+                <li id="sosmed-li"><span class="emoji">❌</span>SOSMED</li>
                 <li><span class="emoji">❌</span>YOUTUBE</li>
                 <li><span class="emoji">❌</span>GAME</li>
                 <li id="threegp-li"><span class="emoji">❌</span>3gp</li>
@@ -101,13 +83,11 @@
                 <li id="fokus-li"><span class="emoji">✅</span>FOKUS & KERJA KERAS</li>
             </ul>
 
-            <!-- Quote 1 dengan link inline -->
-            <p class="quote" style="cursor: pointer;" onclick="window.open('https://www.threads.net/@notesbymaru/post/DRPkDO1kwdZ','_blank')">
+            <p class="quote" style="cursor:pointer;" onclick="window.open('https://www.threads.net/@notesbymaru/post/DRPkDO1kwdZ','_blank')">
                 "Terbiasa menahan rasa sakit"
             </p>
 
-            <!-- Quote 2 dengan collapsible comment (100% inline) -->
-            <div class="quote" onclick="this.querySelector('details').open=!this.querySelector('details').open;" style="cursor:pointer; position:relative;">
+            <div class="quote" onclick="this.querySelector('details').open=!this.querySelector('details').open;" style="cursor:pointer;">
                 "Pemenang tidak pernah berhenti, orang yang berhenti tak akan pernah menang"
                 <details style="margin-top:8px; background:#c8e6c9; padding:10px; border-radius:4px; font-style:normal; font-size:0.9em; color:#1b5e20;">
                     <summary style="cursor:pointer; font-weight:bold; list-style:none;">💡 Komentar</summary>
@@ -130,6 +110,20 @@
             <span class="line-left">Kalau lu kebanyakan percaya,</span><span class="line-right">bisa jadi lu gampang dibohongin.</span>
             <span class="line-left">Kalau lu kebanyakan Scroll Medsos,</span><span class="line-right">bisa jadi otaklu udah busuk !</span>
             <p class="reminder-quote">"Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)</p>
+        </div>
+    </div>
+
+    <!-- Modal SOSMED - 5 Foto Berjejer (100% INLINE) -->
+    <div id="sosmedModal" class="modal">
+        <span class="close" onclick="document.getElementById('sosmedModal').style.display='none'">&times;</span>
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.6);text-align:center;max-width:95vw;overflow-x:auto;">
+            <div style="display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:nowrap;min-width:800px;">
+                <img src="11.jpg" alt="SOSMED 1" style="width:280px;height:auto;max-height:80vh;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+                <img src="12.jpg" alt="SOSMED 2" style="width:280px;height:auto;max-height:80vh;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+                <img src="13.jpg" alt="SOSMED 3" style="width:280px;height:auto;max-height:80vh;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+                <img src="14.jpg" alt="SOSMED 4" style="width:280px;height:auto;max-height:80vh;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+                <img src="15.jpg" alt="SOSMED 5" style="width:280px;height:auto;max-height:80vh;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+            </div>
         </div>
     </div>
 
@@ -159,7 +153,7 @@
         </div>
     </div>
 
-    <!-- Modal Fokus & Kerja Keras (04.jpg) -->
+    <!-- Modal Fokus & Kerja Keras -->
     <div id="fokusModal" class="modal">
         <span class="close">&times;</span>
         <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:620px;">
@@ -174,6 +168,7 @@
         document.addEventListener('mousemove',e=>{if(isDragging){e.preventDefault();currentX=e.clientX-initialX;currentY=e.clientY-initialY;xOffset=currentX;yOffset=currentY;stickyNote.style.transform=`translate(${currentX}px,${currentY}px)`;}});
         document.addEventListener('mouseup',()=>{isDragging=false;});
 
+        document.getElementById('sosmed-li').onclick=()=>{document.getElementById('sosmedModal').style.display='block';};
         document.getElementById('threegp-li').onclick=()=>{document.getElementById('imageModal').style.display='block';};
         document.getElementById('baca-buku-li').onclick=()=>{document.getElementById('bacaBukuModal').style.display='block';};
         document.getElementById('fokus-li').onclick=()=>{document.getElementById('fokusModal').style.display='block';};
