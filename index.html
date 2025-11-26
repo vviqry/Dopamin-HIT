@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="dopamin.ico">
     <style>
         body {font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; color: #333; position: relative;}
-        h1 {text-align: center; color: #2c3e50;}
+        h1 {text-align: center; color: #2c3e50; cursor: pointer;}
         .container {display: flex; justify-content: space-between; gap: 20px;}
         .column {flex: 1; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column;}
         .bad {border-left: 4px solid #e74c3c;}
@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-    <h1>Catatan Dopamin Hit: Baik & Buruk</h1>
+    <h1 onclick="document.getElementById('secretModal').style.display='block'">Catatan Dopamin Hit: Baik & Buruk</h1>
     <div class="container">
         <div class="column bad">
             <h2><span class="emoji">❌</span>Dopamin Hit Buruk</h2>
@@ -113,7 +113,7 @@
         </div>
     </div>
 
-    <!-- Modal SOSMED - 5 Foto Berjejer (100% INLINE) -->
+    <!-- Modal SOSMED - 5 Foto -->
     <div id="sosmedModal" class="modal">
         <span class="close" onclick="document.getElementById('sosmedModal').style.display='none'">&times;</span>
         <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.6);text-align:center;max-width:95vw;overflow-x:auto;">
@@ -127,11 +127,11 @@
         </div>
     </div>
 
-    <!-- Modal YOUTUBE - 05.jpg (100% INLINE) -->
+    <!-- Modal YOUTUBE (05.jpg) - 100% INLINE -->
     <div id="youtubeModal" class="modal">
         <span class="close" onclick="document.getElementById('youtubeModal').style.display='none'">&times;</span>
-        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:620px;">
-            <img src="05.jpg" alt="YOUTUBE" style="width:600px;height:900px;object-fit:contain;border-radius:8px;">
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:420px;">
+            <img src="05.jpg" alt="Youtube" style="width:400px;height:600px;object-fit:contain;border-radius:8px;">
         </div>
     </div>
 
@@ -166,6 +166,29 @@
         <span class="close">&times;</span>
         <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:620px;">
             <img src="04.jpg" alt="Fokus & Kerja Keras" style="width:600px;height:600px;object-fit:contain;border-radius:8px;">
+        </div>
+    </div>
+
+    <!-- Modal Rahasia Cuan (Tersembunyi di Judul) - 100% INLINE, Background seperti surat lama -->
+    <div id="secretModal" class="modal">
+        <span class="close" onclick="document.getElementById('secretModal').style.display='none'">&times;</span>
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px;background:linear-gradient(to bottom, #f5f5dc, #d2b48c);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.6);text-align:left;max-width:90vw;max-height:80vh;overflow-y:auto;font-family:'Georgia',serif;color:#8b4513;border:2px solid #a0522d;">
+            <h3 style="text-align:center;color:#8b4513;margin-bottom:15px;font-size:1.2em;">Rahasia Cuan orang China</h3>
+            <ol style="padding-left:20px;line-height:1.6;">
+                <li style="margin-bottom:8px;"><strong>Disiplin dan Fokus</strong><br>Dari awal membuka usaha, serius. Toko ditata rapi, harga jelas, pelayanan konsisten, dan selalu ramah. Mereka memperlakukan usaha kecil seperti perusahaan besar.</li>
+                <li style="margin-bottom:8px;"><strong>Manajemen Keuangan yang Ketat</strong><br>Mereka tidak menghambur-hamburkan keuntungan untuk gaya hidup. Semua keuntungan diinvestasikan kembali untuk memperbesar bisnis. Prinsip mereka: tahan diri sekarang, nikmati hasil besar nanti.</li>
+                <li style="margin-bottom:8px;"><strong>Sistem dan Keluarga Keluarga</strong><br>Setiap anggota keluarga punya peran, dari stok, kasir, hingga kebersihan. Mereka bekerja seperti tim profesional dan saling mendukung antar keluarga, bukan bersaing.</li>
+                <li style="margin-bottom:8px;"><strong>Belajar dari Kegagalan</strong><br>Gagal dianggap sebagai "biaya sekolah". Mereka tidak mengeluh, tapi belajar dari kesalahan dan mencoba lagi dengan cara yang lebih baik.</li>
+                <li style="margin-bottom:8px;"><strong>Etos Kerja dan Pendidikan Anak</strong><br>Anak-anak dibiasakan membantu di toko sejak kecil. Dari situ, mereka belajar tanggung jawab, kerja keras, dan sistem bisnis keluarga.</li>
+                <li style="margin-bottom:8px;"><strong>Melihat Peluang Kecil</strong><br>Mereka berani memanfaatkan lokasi atau peluang yang dianggap tidak strategis oleh orang lain, lalu membangunnya sedikit demi sedikit sampai ramai.</li>
+                <li style="margin-bottom:8px;"><strong>Pelayanan dan Loyalitas Pelanggan</strong><br>Mereka menjaga hubungan baik dengan pembeli. Lebih untung kecil tapi pelanggan balik lagi, daripada untung besar tapi pelanggan hilang.</li>
+                <li style="margin-bottom:8px;"><strong>Berpikir Jangka Panjang</strong><br>Mereka sabar membangun fondasi bisnis bertahun-tahun. Setelah kuat, baru naik pesat tanpa takut runtuh.</li>
+                <li style="margin-bottom:8px;"><strong>Menghargai Ilmu dan Belajar Terus</strong><br>Mereka belajar dari siapa pun — orang tua, pemasok, pelanggan. Pengetahuan praktis lebih diutamakan daripada teori tanpa tindakan.</li>
+                <li style="margin-bottom:8px;"><strong>Komunitas dan Jaringan Kuat</strong><br>Mereka sering berkumpul untuk bertukar informasi bisnis, bukan sekadar nongkrong. Dari situ muncul peluang baru dan solusi cepat.</li>
+                <li style="margin-bottom:8px;"><strong>Kebiasaan Menabung dan Investasi Produktif</strong><br>Walau pendapatan kecil, selalu disisihkan sedikit demi sedikit hingga jadi modal besar. Mereka membeli aset yang menghasilkan, bukan sekadar barang mewah.</li>
+                <li style="margin-bottom:8px;"><strong>Berani Ambil Risiko yang Dihitung</strong><br>Mereka cepat bertindak saat melihat peluang, tapi tetap dengan perhitungan matang.</li>
+                <li style="margin-bottom:8px;"><strong>Konsistensi</strong><br>Tidak mudah menyerah. Walau sepi, tetap buka, tetap ramah, tetap disiplin. Akhirnya pelanggan percaya dan usaha berkembang stabil.</li>
+            </ol>
         </div>
     </div>
 
