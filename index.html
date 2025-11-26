@@ -107,7 +107,7 @@
     </div>
 
     <!-- Tombol Bulat Melayang untuk Video -->
-    <button class="floating-video-btn" onclick="document.getElementById('videoModal').style.display='block'" title="Play Video Vertikal">▶</button>
+    <button class="floating-video-btn" onclick="document.getElementById('videoChoiceModal').style.display='block'" title="Pilih Video Vertikal">▶</button>
 
     <!-- Sticky Note -->
     <div class="sticky-note" id="stickyNote">
@@ -120,6 +120,32 @@
             <span class="line-left">Kalau lu kebanyakan percaya,</span><span class="line-right">bisa jadi lu gampang dibohongin.</span>
             <span class="line-left">Kalau lu kebanyakan Scroll Medsos,</span><span class="line-right">bisa jadi otaklu udah busuk !</span>
             <p class="reminder-quote">"Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)</p>
+        </div>
+    </div>
+
+    <!-- Modal Pilihan Video - 100% INLINE -->
+    <div id="videoChoiceModal" class="modal">
+        <span class="close" onclick="document.getElementById('videoChoiceModal').style.display='none'">&times;</span>
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:400px;">
+            <h3 style="margin-bottom:20px;color:#333;">Pilih Video Vertikal</h3>
+            <button onclick="document.getElementById('videoChoiceModal').style.display='none'; document.getElementById('videoModal').style.display='block';" style="display:block;margin:10px auto;padding:10px 20px;background:#ff6b35;color:white;border:none;border-radius:8px;cursor:pointer;font-size:16px;">Play Video (video.mp4)</button>
+            <button onclick="document.getElementById('videoChoiceModal').style.display='none'; document.getElementById('video1Modal').style.display='block';" style="display:block;margin:10px auto;padding:10px 20px;background:#ff6b35;color:white;border:none;border-radius:8px;cursor:pointer;font-size:16px;">Play Video 1 (video1.mp4)</button>
+        </div>
+    </div>
+
+    <!-- Modal Video Utama (video.mp4) -->
+    <div id="videoModal" class="modal">
+        <span class="close" onclick="document.getElementById('videoModal').style.display='none'">&times;</span>
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;background:rgba(0,0,0,0.9);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:320px;">
+            <video src="video.mp4" controls style="width:300px;height:auto;max-height:80vh;border-radius:8px;background:black;"></video>
+        </div>
+    </div>
+
+    <!-- Modal Video 1 (video1.mp4) - 100% INLINE -->
+    <div id="video1Modal" class="modal">
+        <span class="close" onclick="document.getElementById('video1Modal').style.display='none'">&times;</span>
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;background:rgba(0,0,0,0.9);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:320px;">
+            <video src="video1.mp4" controls style="width:300px;height:auto;max-height:80vh;border-radius:8px;background:black;"></video>
         </div>
     </div>
 
@@ -199,14 +225,6 @@
                 <li style="margin-bottom:8px;"><strong>Berani Ambil Risiko yang Dihitung</strong><br>Mereka cepat bertindak saat melihat peluang, tapi tetap dengan perhitungan matang.</li>
                 <li style="margin-bottom:8px;"><strong>Konsistensi</strong><br>Tidak mudah menyerah. Walau sepi, tetap buka, tetap ramah, tetap disiplin. Akhirnya pelanggan percaya dan usaha berkembang stabil.</li>
             </ol>
-        </div>
-    </div>
-
-    <!-- Modal Video Vertikal MP4 - 100% INLINE -->
-    <div id="videoModal" class="modal">
-        <span class="close" onclick="document.getElementById('videoModal').style.display='none'">&times;</span>
-        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px;background:rgba(0,0,0,0.9);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:center;max-width:320px;">
-            <video src="video.mp4" controls style="width:300px;height:auto;max-height:80vh;border-radius:8px;background:black;"></video>
         </div>
     </div>
 
