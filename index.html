@@ -23,7 +23,6 @@
             margin-top: 15px; padding: 10px; background-color: #d5f4e6; border-left: 4px solid #27ae60;
             border-radius: 4px; font-style: italic; text-align: center; color: #2c3e50; font-size: 0.95em; cursor: pointer;
         }
-
         /* Sticky Note */
         .sticky-note {
             position: fixed; top: 20px; right: 20px; width: 280px; min-height: 280px;
@@ -38,12 +37,10 @@
             margin-top: 15px; padding: 10px; background-color: #fff3cd; border-left: 3px solid #ffc107;
             border-radius: 4px; font-style: italic; text-align: center; color: #856404; font-size: 0.85em; border-top: 1px solid #e0e0e0;
         }
-
         /* Modal umum */
         .modal {display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9);}
         .close {color: #aaa; position: absolute; top: 15px; right: 35px; font-size: 40px; font-weight: bold; cursor: pointer;}
         .close:hover {color: #fff;}
-
         /* Modal 01-02 & Baca Buku */
         .modal-content {
             margin: auto; display: block; width: 80%; max-width: 700px; padding: 20px; position: relative;
@@ -51,20 +48,17 @@
         }
         .gallery {display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;}
         .gallery img {max-width: 300px; height: auto; border-radius: 8px;}
-
         #bacaBukuModal .modal-content {max-height: 80vh; overflow-y: auto; text-align: left; max-width: 800px;}
         #bacaBukuModal img {max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;}
         .caption-title {font-weight: bold; font-size: 1.2em; margin-bottom: 15px; color: #2c3e50;}
         .caption-list {list-style-type: decimal; padding-left: 20px;}
         .caption-list li {margin-bottom: 12px; line-height: 1.5; background-color: #f9f9f9; padding: 10px; border-radius: 4px; color: #333;}
-
         /* Tombol Bulat Melayang untuk Video */
         .floating-video-btn {
             position: fixed; bottom: 20px; right: 20px; background: #ff6b35; color: white; border: none; border-radius: 50%; width: 60px; height: 60px;
             font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1500; transition: transform 0.2s;
         }
         .floating-video-btn:hover {transform: scale(1.1);}
-
         /* Tombol ⚠ di atas tombol ▶ */
         .floating-warning-btn {
             position: fixed; bottom: 100px; right: 20px; background: #f39c12; color: white; border: none; border-radius: 50%; width: 60px; height: 60px;
@@ -96,11 +90,9 @@
                 <li><span class="emoji">✅</span>OLAHRAGA</li>
                 <li id="fokus-li"><span class="emoji">✅</span>FOKUS & KERJA KERAS</li>
             </ul>
-
             <p class="quote" style="cursor:pointer;" onclick="window.open('https://www.threads.net/@notesbymaru/post/DRPkDO1kwdZ','_blank')">
                 "Terbiasa menahan rasa sakit"
             </p>
-
             <div class="quote" onclick="this.querySelector('details').open=!this.querySelector('details').open;" style="cursor:pointer;">
                 "Pemenang tidak pernah berhenti, orang yang berhenti tak akan pernah menang"
                 <details style="margin-top:8px; background:#c8e6c9; padding:10px; border-radius:4px; font-style:normal; font-size:0.9em; color:#1b5e20;">
@@ -108,17 +100,13 @@
                     Kalau lu nyerah, lu hanya akan menyesal & terpaksa mulai dari 0 lagi. tanpa serius untuk terus berjuang sampai 180 day
                 </details>
             </div>
-
             <p class="quote">"KEBAHAGIAAN tanpa PENDERITAAN adalah KEPALSUAN"</p>
         </div>
     </div>
-
     <!-- Tombol ⚠ (atas tombol ▶) -->
     <button class="floating-warning-btn" onclick="document.getElementById('warningModal').style.display='block'" title="Stay Focused">🔥</button>
-
     <!-- Tombol Bulat Melayang untuk Video -->
     <button class="floating-video-btn" onclick="document.getElementById('videoGalleryModal').style.display='block'" title="Play Videos Vertikal">▶</button>
-
     <!-- Sticky Note -->
     <div class="sticky-note" id="stickyNote">
         <div class="sticky-note-header">Catatan Penting:</div>
@@ -132,29 +120,32 @@
             <p class="reminder-quote">"Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)</p>
         </div>
     </div>
-
-    <!-- Modal ⚠ - Pesan Stay Focused - 100% INLINE -->
+    <!-- Modal ⚠ - Pesan Stay Focused - dengan Video di Samping -->
     <div id="warningModal" class="modal">
         <span class="close" onclick="document.getElementById('warningModal').style.display='none'">&times;</span>
-        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);text-align:left;max-width:500px;max-height:80vh;overflow-y:auto;">
-            <h2 style="text-align:center;color:#d63031;font-weight:bold;font-size:1.5em;margin-bottom:15px;">Stay Focused on your goals</h2>
-            <ul style="line-height:1.6;padding-left:20px;">
-                <li style="margin-bottom:10px;">Cek WA "Berkelas"</li>
-                <li style="margin-bottom:10px;">Fokus menahan RASA SAKIT (berkorban)<br><em>Hidup yang tidak diperjuangkan<br>Tidak akan pernah dimenangkan</em></li>
-                <li style="margin-bottom:10px;">respont event/takdir yg terjadi dengan sabar</li>
-                <li style="margin-bottom:10px;">perhatikan setiap langkah yang akan ditempuh, karna semuanya PASTI & TENTU akan berdampak di masa depan</li>
-                <li style="margin-bottom:10px;">Bakar 🔥🔥🔥 & Fokus pada tujuan (cek to do list)</li>
-                <li style="margin-bottom:10px;"><strong>Samatha & Vipassana</strong><br>
-                    - Saat dorongan muncul → duduk, tarik napas 10x perlahan, amati dorongan tanpa melawan (Vipassana).<br>
-                    - Fokus ulang → alihkan ke napas/objek meditasi (Samatha).<br>
-                    - Terapkan daily → 10–15 menit pagi/sore supaya otak terbiasa lebih tenang.
-                </li>
-                <li style="margin-bottom:10px;">cek quote app "Zero faulty habbit"</li>
-                <li style="margin-bottom:10px;">‌Investasikan waktu pada hal produktif, supaya dirimu di masa depan berterima kasih</li>
-            </ul>
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);max-width:1000px;max-height:80vh;overflow-y:auto;display:flex;justify-content:center;align-items:flex-start;gap:20px;">
+            <!-- Video di kiri -->
+            <video src="video2.mp4" controls style="width:400px;height:600px;object-fit:contain;border-radius:8px;background:black;flex-shrink:0;"></video>
+            <!-- Konten Teks di kanan -->
+            <div style="text-align:left;flex:1;max-width:500px;">
+                <h2 style="text-align:center;color:#d63031;font-weight:bold;font-size:1.5em;margin-bottom:15px;">Stay Focused on your goals</h2>
+                <ul style="line-height:1.6;padding-left:20px;">
+                    <li style="margin-bottom:10px;">Cek WA "Berkelas"</li>
+                    <li style="margin-bottom:10px;">Fokus menahan RASA SAKIT (berkorban)<br><em>Hidup yang tidak diperjuangkan<br>Tidak akan pernah dimenangkan</em></li>
+                    <li style="margin-bottom:10px;">respont event/takdir yg terjadi dengan sabar</li>
+                    <li style="margin-bottom:10px;">perhatikan setiap langkah yang akan ditempuh, karna semuanya PASTI & TENTU akan berdampak di masa depan</li>
+                    <li style="margin-bottom:10px;">Bakar 🔥🔥🔥 & Fokus pada tujuan (cek to do list)</li>
+                    <li style="margin-bottom:10px;"><strong>Samatha & Vipassana</strong><br>
+                        - Saat dorongan muncul → duduk, tarik napas 10x perlahan, amati dorongan tanpa melawan (Vipassana).<br>
+                        - Fokus ulang → alihkan ke napas/objek meditasi (Samatha).<br>
+                        - Terapkan daily → 10–15 menit pagi/sore supaya otak terbiasa lebih tenang.
+                    </li>
+                    <li style="margin-bottom:10px;">cek quote app "Zero faulty habbit"</li>
+                    <li style="margin-bottom:10px;">‌Investasikan waktu pada hal produktif, supaya dirimu di masa depan berterima kasih</li>
+                </ul>
+            </div>
         </div>
     </div>
-
     <!-- Modal Video Gallery (video.mp4 + 06.jpg + video1.mp4) -->
     <div id="videoGalleryModal" class="modal">
         <span class="close" onclick="document.getElementById('videoGalleryModal').style.display='none'">&times;</span>
@@ -166,7 +157,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal SOSMED - 5 Foto -->
     <div id="sosmedModal" class="modal">
         <span class="close" onclick="document.getElementById('sosmedModal').style.display='none'">&times;</span>
@@ -180,7 +170,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal YOUTUBE (05.jpg) -->
     <div id="youtubeModal" class="modal">
         <span class="close" onclick="document.getElementById('youtubeModal').style.display='none'">&times;</span>
@@ -188,14 +177,12 @@
             <img src="05.jpg" alt="Youtube" style="width:400px;height:600px;object-fit:contain;border-radius:8px;">
         </div>
     </div>
-
     <!-- Modal 3gp -->
     <div id="imageModal" class="modal"><span class="close">&times;</span>
         <div class="modal-content"><div class="gallery">
             <img src="01.jpg" alt="Gambar 01"><img src="02.jpg" alt="Gambar 02">
         </div></div>
     </div>
-
     <!-- Modal Baca Buku -->
     <div id="bacaBukuModal" class="modal"><span class="close">&times;</span>
         <div class="modal-content">
@@ -214,7 +201,6 @@
             </ol>
         </div>
     </div>
-
     <!-- Modal Fokus & Kerja Keras -->
     <div id="fokusModal" class="modal">
         <span class="close">&times;</span>
@@ -222,7 +208,6 @@
             <img src="04.jpg" alt="Fokus & Kerja Keras" style="width:600px;height:600px;object-fit:contain;border-radius:8px;">
         </div>
     </div>
-
     <!-- Modal Rahasia Cuan -->
     <div id="secretModal" class="modal">
         <span class="close" onclick="document.getElementById('secretModal').style.display='none'">&times;</span>
@@ -245,24 +230,19 @@
             </ol>
         </div>
     </div>
-
     <script>
         const stickyNote=document.getElementById('stickyNote');
         let isDragging=false,currentX,currentY,initialX,initialY,xOffset=0,yOffset=0;
         stickyNote.addEventListener('contextmenu',e=>{e.preventDefault();isDragging=true;initialX=e.clientX-xOffset;initialY=e.clientY-yOffset;});
         document.addEventListener('mousemove',e=>{if(isDragging){e.preventDefault();currentX=e.clientX-initialX;currentY=e.clientY-initialY;xOffset=currentX;yOffset=currentY;stickyNote.style.transform=`translate(${currentX}px,${currentY}px)`;}});
         document.addEventListener('mouseup',()=>{isDragging=false;});
-
         document.getElementById('sosmed-li').onclick=()=>{document.getElementById('sosmedModal').style.display='block';};
         document.getElementById('youtube-li').onclick=()=>{document.getElementById('youtubeModal').style.display='block';};
         document.getElementById('threegp-li').onclick=()=>{document.getElementById('imageModal').style.display='block';};
         document.getElementById('baca-buku-li').onclick=()=>{document.getElementById('bacaBukuModal').style.display='block';};
         document.getElementById('fokus-li').onclick=()=>{document.getElementById('fokusModal').style.display='block';};
-
         document.querySelectorAll('.close').forEach(c=>c.onclick=()=>{c.parentElement.style.display='none';});
         window.onclick=e=>{if(e.target.classList.contains('modal'))e.target.style.display='none';};
     </script>
 </body>
 </html>
-
-
