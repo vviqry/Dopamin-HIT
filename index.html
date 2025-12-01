@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +17,11 @@
         color: #333;
         position: relative;
     }
-
     h1 {
         text-align: center;
         color: #2c3e50;
         cursor: pointer;
     }
-
     .container {
         display: flex;
         justify-content: space-between;
@@ -33,7 +30,6 @@
         padding: 20px 0;
         /* ATAS: 20px, BAWAH: 20px */
     }
-
     .column {
         flex: 1;
         background-color: white;
@@ -43,15 +39,12 @@
         display: flex;
         flex-direction: column;
     }
-
     .bad {
         border-left: 4px solid #e74c3c;
     }
-
     .good {
         border-left: 4px solid #27ae60;
     }
-
     .column h2 {
         margin: 0 0 15px 0;
         color: #34495e;
@@ -59,13 +52,11 @@
         align-items: center;
         min-height: 2em;
     }
-
     ul {
         list-style-type: none;
         padding: 0;
         flex-grow: 1;
     }
-
     li {
         margin-bottom: 10px;
         padding: 8px;
@@ -74,24 +65,19 @@
         cursor: pointer;
         transition: background-color 0.3s;
     }
-
     li:hover {
         background-color: #d5dbdb;
     }
-
     .bad li {
         border-left: 3px solid #e74c3c;
     }
-
     .good li {
         border-left: 3px solid #27ae60;
     }
-
     .emoji {
         font-size: 1.2em;
         margin-right: 8px;
     }
-
     .quote {
         margin-top: 15px;
         padding: 10px;
@@ -104,7 +90,6 @@
         font-size: 0.95em;
         cursor: pointer;
     }
-
     /* Sticky Note */
     .sticky-note {
         position: fixed;
@@ -124,29 +109,24 @@
         resize: both;
         overflow: auto;
     }
-
     .sticky-note:hover {
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
-
     .sticky-note-header {
         font-weight: bold;
         margin-bottom: 10px;
         color: #d84315;
     }
-
     .line-left {
         text-align: left;
         display: block;
         margin-bottom: 2px;
     }
-
     .line-right {
         text-align: right;
         display: block;
         margin-bottom: 8px;
     }
-
     .reminder-quote {
         margin-top: 15px;
         padding: 10px;
@@ -159,7 +139,6 @@
         font-size: 0.85em;
         border-top: 1px solid #e0e0e0;
     }
-
     /* Modal umum */
     .modal {
         display: none;
@@ -172,7 +151,6 @@
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.9);
     }
-
     .close {
         color: #aaa;
         position: absolute;
@@ -182,11 +160,9 @@
         font-weight: bold;
         cursor: pointer;
     }
-
     .close:hover {
         color: #fff;
     }
-
     /* Modal 01-02 & Baca Buku */
     .modal-content {
         margin: auto;
@@ -202,46 +178,39 @@
         border-radius: 8px;
         color: #333;
     }
-
     .gallery {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
         gap: 20px;
     }
-
     .gallery img {
         max-width: 300px;
         height: auto;
         border-radius: 8px;
     }
-
     #bacaBukuModal .modal-content {
         max-height: 80vh;
         overflow-y: auto;
         text-align: left;
         max-width: 800px;
     }
-
     #bacaBukuModal img {
         max-width: 100%;
         height: auto;
         border-radius: 8px;
         margin-bottom: 20px;
     }
-
     .caption-title {
         font-weight: bold;
         font-size: 1.2em;
         margin-bottom: 15px;
         color: #2c3e50;
     }
-
     .caption-list {
         list-style-type: decimal;
         padding-left: 20px;
     }
-
     .caption-list li {
         margin-bottom: 12px;
         line-height: 1.5;
@@ -250,7 +219,6 @@
         border-radius: 4px;
         color: #333;
     }
-
     /* Tombol Bulat Melayang untuk Video */
     .floating-video-btn {
         position: fixed;
@@ -268,11 +236,9 @@
         z-index: 1500;
         transition: transform 0.2s;
     }
-
     .floating-video-btn:hover {
         transform: scale(1.1);
     }
-
     /* Tombol 📜 baru di atas tombol 🔥 */
     .floating-afirmasi-btn {
         position: fixed;
@@ -290,11 +256,9 @@
         z-index: 1500;
         transition: transform 0.2s;
     }
-
     .floating-afirmasi-btn:hover {
         transform: scale(1.1);
     }
-
     /* Tombol ⚠ di atas tombol ▶ */
     .floating-warning-btn {
         position: fixed;
@@ -312,11 +276,9 @@
         z-index: 1500;
         transition: transform 0.2s;
     }
-
     .floating-warning-btn:hover {
         transform: scale(1.1);
     }
-
     /* ===== Modal Warning ===== */
     .warning-modal-content {
         position: fixed;
@@ -337,7 +299,6 @@
         overflow: hidden;
         box-sizing: border-box;
     }
-
     .warning-video {
         width: 400px;
         height: 600px;
@@ -346,7 +307,6 @@
         background: black;
         flex-shrink: 0;
     }
-
     .warning-text {
         flex: 1;
         width: 400px;
@@ -358,17 +318,12 @@
         word-wrap: break-word;
         word-break: break-word;
         /* Hide scrollbar */
-        scrollbar-width: none;
-        /* Firefox */
-        -ms-overflow-style: none;
-        /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
     }
-
     .warning-text::-webkit-scrollbar {
-        display: none;
-        /* Chrome, Safari, Opera */
+        display: none; /* Chrome, Safari, Opera */
     }
-
     .warning-text h2 {
         text-align: center;
         color: #d63031;
@@ -377,18 +332,15 @@
         margin-bottom: 15px;
         margin-top: 0;
     }
-
     .warning-text ul {
         line-height: 1.6;
         padding-left: 0px;
         margin: 0;
         list-style: none;
     }
-
     .warning-text li {
         margin-bottom: 12px;
     }
-
     /* ===== Modal Afirmasi ===== */
     .afirmasi-modal-content {
         position: fixed;
@@ -407,22 +359,20 @@
         color: #333;
         font-family: 'Georgia', serif;
     }
-
     .afirmasi-modal-content h2 {
         color: #8b4513;
         font-size: 1.4em;
         margin-bottom: 20px;
     }
-
     .afirmasi-text {
-        line-height: 1.6;
-        font-style: italic;
-        margin-bottom: 30px;
-        white-space: pre-line;
-    }
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 30px;
+    white-space: pre-line;
+    scroll-behavior: smooth; /* Biar scroll halus */
+}
     </style>
 </head>
-
 <body>
     <h1 onclick="document.getElementById('secretModal').style.display='block'">Catatan Dopamin Hit: Baik & Buruk</h1>
     <div class="container">
@@ -481,76 +431,64 @@
         </div>
     </div>
     <!-- Modal 📜 - Afirmasi Meditasi -->
-    <div id="afirmasiModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; overflow:auto;">
-        <span class="close" onclick="closeAfirmasiModal()" style="position:absolute; top:20px; right:30px; font-size:30px; cursor:pointer; color:white;">&times;</span>
-        <div class="afirmasi-modal-content" style="background:#fff; max-width:600px; margin:80px auto; padding:40px; border-radius:10px; position:relative;">
-            <h2 style="text-align:center; color:#6b3e26;">SCRIPT AFIRMASI UNTUK MEDITASI</h2>
-            <p style="text-align:center;">Tarik napas… dan mulai dengarkan kata-katanya masuk ke dalam dirimu.</p>
-            <div class="afirmasi-text" id="afirmasiText" style="max-height:400px; overflow-y:auto; padding:20px; line-height:1.8; color:#333; font-style:italic;">
-                --------------------------------------------------------------------------
-                <br><br>
-                Aku aman.<br>
-                Aku tenang.<br>
-                Saat ini, aku hadir sepenuhnya.<br><br>
-                Setiap napas yang masuk… menenangkan pikiranku.<br>
-                Setiap napas yang keluar… melepaskan semua beban yang tidak perlu.<br><br>
-                Aku cukup.<br>
-                Aku berharga.<br>
-                Aku layak menerima hal-hal baik dalam hidupku.<br><br>
-                Pikiranku semakin jernih.<br>
-                Tubuhku semakin rileks.<br>
-                Hatiku semakin damai.<br><br>
-                Aku mampu belajar hal baru.<br>
-                Aku mampu berubah.<br>
-                Aku mampu menjadi versi terbaik dari diriku.<br><br>
-                Setiap kali aku mengulang kata-kata ini…<br>
-                otakku membuat jalur baru yang lebih kuat, lebih positif, dan lebih penuh harapan.<br><br>
-                Aku memilih ketenangan.<br>
-                Aku memilih kepercayaan diri.<br>
-                Aku memilih mencintai diriku sendiri.<br><br>
-                Hari ini…<br>
-                aku melepaskan semua keraguan.<br>
-                aku melepaskan semua ketakutan.<br>
-                aku melepaskan semua pikiran yang tidak lagi berguna untukku.<br><br>
-                Aku layak bahagia.<br>
-                Aku layak berhasil.<br>
-                Aku layak hidup dengan damai.<br><br>
-                Setiap detik…<br>
-                aku menjadi lebih kuat, lebih fokus, dan lebih selaras dengan hidupku.<br><br>
-                Aku bersyukur untuk tubuhku.<br>
-                Aku bersyukur untuk pikiranku.<br>
-                Aku bersyukur untuk perjalanan hidupku.<br><br>
-                Dan sekarang…<br>
-                dengan hati yang tenang,<br>
-                aku menerima semua kebaikan yang sedang datang kepadaku.<br><br>
-                Aku siap.<br>
-                Aku tenang.<br>
-                Aku percaya pada diriku sendiri.<br><br>
+    <div id="afirmasiModal" class="modal">
+        <span class="close" onclick="closeAfirmasiModal()">&times;</span>
+        <div class="afirmasi-modal-content">
+            <h2>SCRIPT AFIRMASI UNTUK MEDITASI</h2>
+            Tarik napas… dan mulai dengarkan kata-katanya masuk ke dalam dirimu.
+            <div class="afirmasi-text">
+--------------------------------------------------------------------------
+Aku aman.
+Aku tenang.
+Saat ini, aku hadir sepenuhnya.
+
+Setiap napas yang masuk… menenangkan pikiranku.
+Setiap napas yang keluar… melepaskan semua beban yang tidak perlu.
+
+Aku cukup.
+Aku berharga.
+Aku layak menerima hal-hal baik dalam hidupku.
+
+Pikiranku semakin jernih.
+Tubuhku semakin rileks.
+Hatiku semakin damai.
+
+Aku mampu belajar hal baru.
+Aku mampu berubah.
+Aku mampu menjadi versi terbaik dari diriku.
+
+Setiap kali aku mengulang kata-kata ini…
+otakku membuat jalur baru yang lebih kuat, lebih positif, dan lebih penuh harapan.
+
+Aku memilih ketenangan.
+Aku memilih kepercayaan diri.
+Aku memilih mencintai diriku sendiri.
+
+Hari ini…
+aku melepaskan semua keraguan.
+aku melepaskan semua ketakutan.
+aku melepaskan semua pikiran yang tidak lagi berguna untukku.
+
+Aku layak bahagia.
+Aku layak berhasil.
+Aku layak hidup dengan damai.
+
+Setiap detik…
+aku menjadi lebih kuat, lebih fokus, dan lebih selaras dengan hidupku.
+
+Aku bersyukur untuk tubuhku.
+Aku bersyukur untuk pikiranku.
+Aku bersyukur untuk perjalanan hidupku.
+
+Dan sekarang…
+dengan hati yang tenang,
+aku menerima semua kebaikan yang sedang datang kepadaku.
+
+Aku siap.
+Aku tenang.
+Aku percaya pada diriku sendiri.
             </div>
         </div>
-        <!-- Inline script -->
-        <script>
-        // Fungsi buka modal dan mulai scroll otomatis
-        function openAfirmasiModal() {
-            const modal = document.getElementById('afirmasiModal');
-            const text = document.getElementById('afirmasiText');
-            modal.style.display = 'block';
-
-            // Mulai scroll otomatis
-            let scrollInterval = setInterval(() => {
-                if (text.scrollTop + text.clientHeight >= text.scrollHeight) {
-                    clearInterval(scrollInterval); // stop kalau sudah sampai bawah
-                } else {
-                    text.scrollTop += 10; // jarak scroll per langkah
-                }
-            }, 200); // kecepatan 200ms per langkah
-        }
-
-        // Fungsi tutup modal
-        function closeAfirmasiModal() {
-            document.getElementById('afirmasiModal').style.display = 'none';
-        }
-        </script>
     </div>
     <!-- Modal ⚠ - Pesan Stay Focused - dengan Video di Samping -->
     <div id="warningModal" class="modal">
@@ -718,16 +656,20 @@
         </div>
     </div>
     <script>
+    let scrollInterval = null; // ← LETAKKAN DI PALING ATAS (GLOBAL)
+
     const stickyNote = document.getElementById('stickyNote');
     let isDragging = false,
         currentX, currentY, initialX, initialY, xOffset = 0,
         yOffset = 0;
+
     stickyNote.addEventListener('contextmenu', e => {
         e.preventDefault();
         isDragging = true;
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
     });
+
     document.addEventListener('mousemove', e => {
         if (isDragging) {
             e.preventDefault();
@@ -738,30 +680,58 @@
             stickyNote.style.transform = `translate(${currentX}px,${currentY}px)`;
         }
     });
+
     document.addEventListener('mouseup', () => { isDragging = false; });
+
     document.getElementById('sosmed-li').onclick = () => { document.getElementById('sosmedModal').style.display = 'block'; };
     document.getElementById('youtube-li').onclick = () => { document.getElementById('youtubeModal').style.display = 'block'; };
     document.getElementById('threegp-li').onclick = () => { document.getElementById('imageModal').style.display = 'block'; };
     document.getElementById('baca-buku-li').onclick = () => { document.getElementById('bacaBukuModal').style.display = 'block'; };
     document.getElementById('fokus-li').onclick = () => { document.getElementById('fokusModal').style.display = 'block'; };
-    document.querySelectorAll('.close').forEach(c => c.onclick = () => { c.parentElement.style.display = 'none'; });
-    window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+
+    document.querySelectorAll('.close').forEach(c => c.onclick = () => { 
+        c.parentElement.style.display = 'none'; 
+    });
+
+    window.onclick = e => { 
+        if (e.target.classList.contains('modal')) 
+            e.target.style.display = 'none'; 
+    };
 
     // Fungsi untuk Modal Afirmasi
     function openAfirmasiModal() {
-        document.getElementById('afirmasiModal').style.display = 'block';
-        const audio = document.getElementById('afirmasiAudio');
-        audio.loop = true;
-        audio.play().catch(e => console.log('Auto-play blocked:', e));
-    }
+    document.getElementById('afirmasiModal').style.display = 'block';
+    const audio = document.getElementById('afirmasiAudio');
+    audio.loop = true;
+    audio.play().catch(e => console.log('Auto-play blocked:', e));
 
+    // Mulai scroll otomatis setelah modal terbuka (delay 500ms biar smooth)
+    setTimeout(() => {
+        const textElement = document.querySelector('.afirmasi-text');
+        if (textElement) {
+            textElement.scrollTop = 0; // Reset ke atas dulu
+            scrollInterval = setInterval(() => {
+                textElement.scrollTop += 10; // Scroll 10px per step (bisa diubah ke 5-15px buat kecepatan)
+                if (textElement.scrollTop >= textElement.scrollHeight - textElement.clientHeight) {
+                    clearInterval(scrollInterval); // Stop pas udah sampe bawah
+                }
+            }, 200); // Delay 200ms per step
+        }
+    }, 500); // Delay awal biar modal render dulu
+}
     function closeAfirmasiModal() {
-        document.getElementById('afirmasiModal').style.display = 'none';
-        const audio = document.getElementById('afirmasiAudio');
-        audio.pause();
-        audio.currentTime = 0;
-    }
-    </script>
-</body>
+    document.getElementById('afirmasiModal').style.display = 'none';
+    const audio = document.getElementById('afirmasiAudio');
+    audio.pause();
+    audio.currentTime = 0;
 
+    // Stop scroll otomatis
+    if (scrollInterval) {
+        clearInterval(scrollInterval);
+        scrollInterval = null;
+    }
+}
+</script>
+
+</body>
 </html>
