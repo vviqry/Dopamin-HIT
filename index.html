@@ -22,7 +22,7 @@
         h1 {
             text-align: center;
             color: #2c3e50;
-            cursor: pointer;
+            /* HAPUS cursor: pointer; karena judul sekarang hanya teks biasa */
         }
 
         .container {
@@ -470,6 +470,29 @@
             transform: scale(1.1);
         }
 
+        /* ===== TAMBAHAN: Floating Button Cuan (Emas) ===== */
+        .floating-cuan-btn {
+            position: fixed;
+            top: 80px; /* Posisi di bawah tombol 💭 */
+            left: 20px;
+            background: #F7D154; /* Warna emas */
+            color: #8B4513; /* Warna coklat tua untuk kontras */
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            transition: transform 0.2s;
+        }
+
+        .floating-cuan-btn:hover {
+            transform: scale(1.1);
+            background: #FFC107; /* Warna emas lebih terang saat hover */
+        }
+
         /* ===== TAMBAHAN: Sticky Note Baru ===== */
         .new-sticky-note {
             display: none;
@@ -519,17 +542,21 @@
 </head>
 
 <body>
-    <h1 onclick="document.getElementById('secretModal').style.display='block'">Catatan Dopamin Hit: Baik & Buruk</h1>
+    <!-- JUDUL: Sekarang hanya teks biasa tanpa fungsi klik -->
+    <h1>Catatan Dopamin Hit: Baik & Buruk</h1>
     
     <!-- ===== TAMBAHAN: Floating Button untuk Sticky Note Baru ===== -->
     <button class="floating-note-btn" onclick="showNewStickyNote()" title="Tampilkan Pesan Motivasi">💭</button>
+    
+    <!-- ===== TAMBAHAN: Floating Button untuk Modal Cuan ===== -->
+    <button class="floating-cuan-btn" onclick="document.getElementById('secretModal').style.display='block'" title="Rahasia Cuan">㊗️</button>
     
     <!-- ===== TAMBAHAN: Overlay Hitam Legam ===== -->
     <div class="overlay" id="overlay" onclick="hideNewStickyNote()"></div>
     
     <!-- ===== TAMBAHAN: Sticky Note Baru ===== -->
     <div class="new-sticky-note" id="newStickyNote">
-        <div class="new-sticky-note-header">Pesan Motivasi:</div>
+        <div class="new-sticky-note-header">What you must know !!</div>
         <div class="new-sticky-note-content">
             <span class="line-left">Nggak punya teman,</span><span class="line-right">lo kebanyakan diem.</span>
             <span class="line-left">Nggak punya duit,</span><span class="line-right">lo nggak punya value.</span>
