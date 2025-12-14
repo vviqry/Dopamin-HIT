@@ -493,6 +493,29 @@
             background: #FFC107; /* Warna emas lebih terang saat hover */
         }
 
+        /* ===== TAMBAHAN: Floating Button Peter Pan ===== */
+        .floating-peterpan-btn {
+            position: fixed;
+            top: 140px; /* Posisi di bawah tombol ㊗️ */
+            left: 20px;
+            background: #FF99CC; /* Warna pink muda/baby */
+            color: #8B008B; /* Warna ungu tua untuk kontras */
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            transition: transform 0.2s;
+        }
+
+        .floating-peterpan-btn:hover {
+            transform: scale(1.1);
+            background: #FF66B2; /* Warna pink lebih terang saat hover */
+        }
+
         /* ===== TAMBAHAN: Sticky Note Baru ===== */
         .new-sticky-note {
             display: none;
@@ -538,6 +561,90 @@
             /* Hitam legam dengan opacity 70% */
             z-index: 1500;
         }
+
+        /* ===== TAMBAHAN: Modal Peter Pan Syndrome ===== */
+        .peterpan-modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 800px;
+            max-height: 80vh;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            overflow-y: auto;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            width: 90%;
+        }
+
+        .peterpan-modal-content h2 {
+            text-align: center;
+            color: #8B008B;
+            font-weight: bold;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #FF99CC;
+            padding-bottom: 10px;
+        }
+
+        .peterpan-modal-content h3 {
+            color: #6A0DAD;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+            border-left: 4px solid #FF99CC;
+            padding-left: 10px;
+        }
+
+        .peterpan-modal-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .peterpan-modal-content ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .peterpan-modal-content li {
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: #f9f0ff;
+            border-left: 3px solid #8B008B;
+            border-radius: 4px;
+            line-height: 1.5;
+            cursor: default;
+        }
+
+        .peterpan-modal-content li:hover {
+            background-color: #f0e1ff;
+        }
+
+        .peterpan-modal-content strong {
+            color: #8B008B;
+        }
+
+        .peterpan-modal-content .tip {
+            background-color: #FFF0F5;
+            border-left: 4px solid #FF69B4;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        .peterpan-modal-content .warning {
+            background-color: #FFF8DC;
+            border-left: 4px solid #FFD700;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
     </style>
 </head>
 
@@ -551,12 +658,15 @@
     <!-- ===== TAMBAHAN: Floating Button untuk Modal Cuan ===== -->
     <button class="floating-cuan-btn" onclick="document.getElementById('secretModal').style.display='block'" title="Rahasia Cuan">㊗️</button>
     
+    <!-- ===== TAMBAHAN: Floating Button untuk Peter Pan Syndrome ===== -->
+    <button class="floating-peterpan-btn" onclick="document.getElementById('peterpanModal').style.display='block'" title="Solusi Peter Pan Syndrome">👶</button>
+    
     <!-- ===== TAMBAHAN: Overlay Hitam Legam ===== -->
     <div class="overlay" id="overlay" onclick="hideNewStickyNote()"></div>
     
     <!-- ===== TAMBAHAN: Sticky Note Baru ===== -->
     <div class="new-sticky-note" id="newStickyNote">
-        <div class="new-sticky-note-header">What you must know !!</div>
+        <div class="new-sticky-note-header">Pesan Motivasi:</div>
         <div class="new-sticky-note-content">
             <span class="line-left">Nggak punya teman,</span><span class="line-right">lo kebanyakan diem.</span>
             <span class="line-left">Nggak punya duit,</span><span class="line-right">lo nggak punya value.</span>
@@ -625,6 +735,81 @@
             <p class="reminder-quote">"Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)</p>
         </div>
     </div>
+    
+    <!-- ===== TAMBAHAN: Modal Peter Pan Syndrome ===== -->
+    <div id="peterpanModal" class="modal">
+        <span class="close" onclick="document.getElementById('peterpanModal').style.display='none'">&times;</span>
+        <div class="peterpan-modal-content">
+            <h2>Solusi untuk Peter Pan Syndrome</h2>
+            
+            <h3>1. Kenali dan Terima Kondisi</h3>
+            <ul>
+                <li><strong>Sadari pola</strong> - Akui bahwa Anda cenderung menghindari tanggung jawab dewasa</li>
+                <li><strong>Tetapkan batas usia mental</strong> - Evaluasi apakah Anda masih berpikir seperti remaja</li>
+                <li><strong>Identifikasi ketakutan</strong> - Temukan apa yang sebenarnya ditakuti dari menjadi dewasa</li>
+            </ul>
+            
+            <h3>2. Bangun Tanggung Jawab Bertahap</h3>
+            <ul>
+                <li><strong>Mulai dari kecil</strong> - Tanggung jawab keuangan (bayar tagihan tepat waktu)</li>
+                <li><strong>Buat jadwal harian</strong> - Disiplin bangun pagi, kerja, istirahat teratur</li>
+                <li><strong>Kelola keuangan pribadi</strong> - Budgeting, menabung, investasi sederhana</li>
+                <li><strong>Urus kebutuhan sendiri</strong> - Masak, bersih-bersih, laundry mandiri</li>
+            </ul>
+            
+            <h3>3. Kembangkan Keterampilan Sosial Dewasa</h3>
+            <ul>
+                <li><strong>Komunikasi asertif</strong> - Ungkapkan pendapat dengan sopan tapi tegas</li>
+                <li><strong>Manage konflik</strong> - Hadapi masalah, jangan lari atau menghindar</li>
+                <li><strong>Bangun relasi sehat</strong> - Pertemanan yang saling mendukung pertumbuhan</li>
+                <li><strong>Networking profesional</strong> - Koneksi untuk perkembangan karir</li>
+            </ul>
+            
+            <h3>4. Atasi Ketakutan dan Kecemasan</h3>
+            <ul>
+                <li><strong>Hadapi ketakutan bertahap</strong> - Exposure therapy untuk hal yang ditakuti</li>
+                <li><strong>Terapi kognitif</strong> - Ubah pola pikir "dewasa = tidak menyenangkan"</li>
+                <li><strong>Meditasi mindfulness</strong> - Kurangi kecemasan tentang masa depan</li>
+                <li><strong>Journaling</strong> - Catat perkembangan dan refleksi diri</li>
+            </ul>
+            
+            <h3>5. Tujuan dan Visi Hidup</h3>
+            <ul>
+                <li><strong>Buat goal jangka pendek & panjang</strong> - 1 bulan, 1 tahun, 5 tahun</li>
+                <li><strong>Develop karir serius</strong> - Skill upgrade, sertifikasi, promosi</li>
+                <li><strong>Rencana keuangan</strong> - Dana darurat, pensiun, investasi</li>
+                <li><strong>Kontribusi sosial</strong> - Volunteer, mentoring, bantu orang lain</li>
+            </ul>
+            
+            <div class="tip">
+                <strong>💡 Tips Penting:</strong> Proses menjadi dewasa bukan tentang kehilangan keceriaan, tapi tentang menambah kedewasaan tanpa menghilangkan jiwa muda yang positif.
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ Peringatan:</strong> Peter Pan Syndrome yang tidak ditangani dapat menyebabkan masalah serius dalam karir, hubungan, dan kesehatan mental di usia 30-40 tahun.
+            </div>
+            
+            <h3>6. Dukungan Eksternal</h3>
+            <ul>
+                <li><strong>Mentor atau coach</strong> - Panduan dari orang yang lebih berpengalaman</li>
+                <li><strong>Terapi profesional</strong> - Jika sulit dilakukan sendiri</li>
+                <li><strong>Support group</strong> - Komunitas dengan masalah serupa</li>
+                <li><strong>Akuntabilitas partner</strong> - Teman yang saling mengingatkan tujuan</li>
+            </ul>
+            
+            <h3>7. Self-Reward System</h3>
+            <ul>
+                <li><strong>Rayakan pencapaian kecil</strong> - Setiap langkah dewasa patut diapresiasi</li>
+                <li><strong>Balance work-life</strong> - Tetap sisipkan waktu untuk hobi dan kesenangan</li>
+                <li><strong>Positive reinforcement</strong> - Hadiahi diri setelah menyelesaikan tanggung jawab</li>
+            </ul>
+            
+            <p style="text-align: center; margin-top: 20px; font-style: italic; color: #6A0DAD;">
+                "Menjadi dewasa bukan berarti berhenti bermain, tapi bermain dengan lebih banyak tanggung jawab"
+            </p>
+        </div>
+    </div>
+    
     <!-- Modal 📜 - Afirmasi Meditasi -->
     <div id="afirmasiModal" class="modal">
         <span class="close" onclick="closeAfirmasiModal()">&times;</span>
@@ -815,6 +1000,7 @@
             </ol>
         </div>
     </div>
+    
     <script>
         let scrollInterval = null; // ← LETAKKAN DI PALING ATAS (GLOBAL)
 
