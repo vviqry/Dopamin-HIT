@@ -58,6 +58,8 @@
             display: flex;
             align-items: center;
             min-height: 2em;
+            cursor: pointer; /* Ditambahkan untuk popover */
+            position: relative; /* Untuk posisi absolute popover */
         }
 
         ul {
@@ -645,6 +647,47 @@
             margin: 20px 0;
             border-radius: 6px;
         }
+
+        /* ===== TAMBAHAN: Popover untuk Dopamin Hit Buruk ===== */
+        .popover {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: bold;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .popover::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #e74c3c;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .bad h2:hover .popover {
+            display: block;
+        }
     </style>
 </head>
 
@@ -666,7 +709,7 @@
     
     <!-- ===== TAMBAHAN: Sticky Note Baru ===== -->
     <div class="new-sticky-note" id="newStickyNote">
-        <div class="new-sticky-note-header">What you must know</div>
+        <div class="new-sticky-note-header">Pesan Motivasi:</div>
         <div class="new-sticky-note-content">
             <span class="line-left">Nggak punya teman,</span><span class="line-right">lo kebanyakan diem.</span>
             <span class="line-left">Nggak punya duit,</span><span class="line-right">lo nggak punya value.</span>
@@ -679,7 +722,15 @@
     
     <div class="container">
         <div class="column bad">
-            <h2><span class="emoji">❌</span>Dopamin Hit Buruk</h2>
+            <!-- ===== TAMBAHAN: Popover untuk Dopamin Hit Buruk ===== -->
+            <h2 id="dopaminBurukTitle">
+                <span class="emoji">❌</span>Dopamin Hit Buruk
+                <div class="popover" id="dopaminBurukPopover">
+                    Fokus pada tujuan, atau
+                    <br>
+                    rasa bosan akan menerkammu
+                </div>
+            </h2>
             <ul>
                 <li id="sosmed-li"><span class="emoji">❌</span>SOSMED</li>
                 <li id="youtube-li"><span class="emoji">❌</span>YOUTUBE</li>
@@ -957,13 +1008,7 @@
     <div id="bacaBukuModal" class="modal"><span class="close">&times;</span>
         <div class="modal-content">
             <img src="03.jpg" alt="Foto Buku">
-            <div class="caption-title" style="text-align: center;">
-  9 Kebiasaan Sehari-hari yang Sering Dilakukan Orang Bodoh untuk Berpura-pura Pintar
-  <div style="margin-top: 8px; font-size: 14px; font-style: italic; opacity: 0.8;">
-    “Semakin banyak yang kau tahu, semakin sedikit yang perlu kau katakan.”
-  </div>
-</div>
-
+            <div class="caption-title">9 Kebiasaan Sehari-hari yang Sering Dilakukan Orang Bodoh untuk Berpura-pura Pintar</div>
             <ol class="caption-list">
                 <li>Menggunakan Kata-Kata Besar yang Salah<br>Orang yang berpura-pura pintar sering kali berusaha membuat kesan dengan menggunakan kata-kata besar atau teknis. Namun, sering kali mereka salah dalam menggunakannya atau menggunakan kata-kata tersebut tanpa pemahaman yang benar.</li>
                 <li>Menolak Pengetahuan Baru<br>Mereka cenderung merasa bahwa apa yang mereka ketahui sudah cukup dan tidak ada lagi yang perlu dipelajari. Penolakan terhadap informasi baru ini menunjukkan keterbatasan pemikiran mereka.</li>
@@ -1103,9 +1148,69 @@
         document.getElementById('newStickyNote').onclick = function(e) {
             e.stopPropagation();
         };
+
+        // ===== TAMBAHAN: Fungsi untuk Popover Dopamin Hit Buruk =====
+        const dopaminBurukTitle = document.getElementById('dopaminBurukTitle');
+        const dopaminBurukPopover = document.getElementById('dopaminBurukPopover');
+        let popoverVisible = false;
+        let popoverTimeout;
+
+        // Tampilkan popover saat klik
+        dopaminBurukTitle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Toggle visibility
+            if (!popoverVisible) {
+                dopaminBurukPopover.style.display = 'block';
+                popoverVisible = true;
+                
+                // Sembunyikan setelah 3 detik
+                popoverTimeout = setTimeout(() => {
+                    dopaminBurukPopover.style.display = 'none';
+                    popoverVisible = false;
+                }, 3000);
+            } else {
+                dopaminBurukPopover.style.display = 'none';
+                popoverVisible = false;
+                clearTimeout(popoverTimeout);
+            }
+        });
+
+        // Sembunyikan popover saat klik di luar
+        document.addEventListener('click', function(e) {
+            if (popoverVisible && !dopaminBurukTitle.contains(e.target)) {
+                dopaminBurukPopover.style.display = 'none';
+                popoverVisible = false;
+                clearTimeout(popoverTimeout);
+            }
+        });
+
+        // Tampilkan popover saat hover (opsional)
+        dopaminBurukTitle.addEventListener('mouseenter', function() {
+            if (!popoverVisible) {
+                dopaminBurukPopover.style.display = 'block';
+                popoverVisible = true;
+                
+                popoverTimeout = setTimeout(() => {
+                    dopaminBurukPopover.style.display = 'none';
+                    popoverVisible = false;
+                }, 3000);
+            }
+        });
+
+        // Tetap tampilkan saat hover di popover
+        dopaminBurukPopover.addEventListener('mouseenter', function() {
+            clearTimeout(popoverTimeout);
+        });
+
+        // Lanjutkan timeout saat keluar dari popover
+        dopaminBurukPopover.addEventListener('mouseleave', function() {
+            popoverTimeout = setTimeout(() => {
+                dopaminBurukPopover.style.display = 'none';
+                popoverVisible = false;
+            }, 1000);
+        });
     </script>
 </body>
 
 </html>
-
-
