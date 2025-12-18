@@ -22,7 +22,10 @@
         h1 {
             text-align: center;
             color: #2c3e50;
-            /* HAPUS cursor: pointer; karena judul sekarang hanya teks biasa */
+            cursor: pointer;
+            position: relative; /* Untuk posisi absolute popover */
+            display: inline-block;
+            width: 100%;
         }
 
         .container {
@@ -58,7 +61,6 @@
             display: flex;
             align-items: center;
             min-height: 2em;
-            cursor: pointer; /* Ditambahkan untuk popover */
             position: relative; /* Untuk posisi absolute popover */
         }
 
@@ -648,28 +650,35 @@
             border-radius: 6px;
         }
 
-        /* ===== TAMBAHAN: Popover untuk Dopamin Hit Buruk ===== */
+        /* ===== TAMBAHAN: Popover untuk semua elemen ===== */
         .popover {
             display: none;
             position: absolute;
+            background-color: #333;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            white-space: normal;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.2s ease;
+            text-align: left;
+            max-width: 400px;
+            min-width: 250px;
+            line-height: 1.5;
+        }
+
+        /* Popover untuk Dopamin Hit Buruk */
+        .bad .popover {
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
             background-color: #e74c3c;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 6px;
-            font-size: 0.9em;
-            font-weight: bold;
-            white-space: nowrap;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.3s ease;
             margin-top: 5px;
-            text-align: center;
         }
 
-        .popover::before {
+        .bad .popover::before {
             content: '';
             position: absolute;
             top: -6px;
@@ -680,20 +689,69 @@
             border-bottom: 6px solid #e74c3c;
         }
 
+        /* Popover untuk Judul Utama */
+        h1 .popover {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            margin-top: 10px;
+            width: 450px;
+        }
+
+        h1 .popover::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #2c3e50;
+        }
+
+        /* Style untuk konten popover judul */
+        .popover-content {
+            font-size: 0.95em;
+        }
+
+        .popover-content p {
+            margin: 0 0 8px 0;
+        }
+
+        .popover-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .popover-highlight {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        .bad h2:hover .popover {
+        /* Hover trigger untuk semua popover */
+        .popover-trigger:hover .popover {
             display: block;
         }
     </style>
 </head>
 
 <body>
-    <!-- JUDUL: Sekarang hanya teks biasa tanpa fungsi klik -->
-    <h1>Catatan Dopamin Hit: Baik & Buruk</h1>
+    <!-- JUDUL dengan Popover -->
+    <h1 class="popover-trigger" id="mainTitle">
+        Catatan Dopamin Hit: Baik & Buruk
+        <div class="popover" id="mainTitlePopover">
+            <div class="popover-content">
+                <p>Pegang <span class="popover-highlight">ETIKA dan MANNER</span>, karena itu fondasi kekayaan jangka panjang;</p>
+                <p>uang kecil dan besar sama-sama 24 jam, jadi fokus ke <span class="popover-highlight">UANG BESAR</span>;</p>
+                <p>dan ingat, kesuksesan hanya milik mereka yang mau <span class="popover-highlight">BERKORBAN</span>.</p>
+            </div>
+        </div>
+    </h1>
     
     <!-- ===== TAMBAHAN: Floating Button untuk Sticky Note Baru ===== -->
     <button class="floating-note-btn" onclick="showNewStickyNote()" title="Tampilkan Pesan Motivasi">💭</button>
@@ -723,12 +781,10 @@
     <div class="container">
         <div class="column bad">
             <!-- ===== TAMBAHAN: Popover untuk Dopamin Hit Buruk ===== -->
-            <h2 id="dopaminBurukTitle">
+            <h2 id="dopaminBurukTitle" class="popover-trigger">
                 <span class="emoji">❌</span>Dopamin Hit Buruk
                 <div class="popover" id="dopaminBurukPopover">
-                    Fokus pada tujuan, atau
-                    <br>
-                    rasa bosan akan menerkammu
+                    Fokus pada tujuan, atau rasa bosan akan menerkammu
                 </div>
             </h2>
             <ul>
@@ -844,7 +900,7 @@
             <ul>
                 <li><strong>Mentor atau coach</strong> - Panduan dari orang yang lebih berpengalaman</li>
                 <li><strong>Terapi profesional</strong> - Jika sulit dilakukan sendiri</li>
-                <li><strong>Support group</strong> - Komunitas dengan masalah serupa</li>
+                <li><strong>Support group</strong> - Komunitas dengan masalah serima</li>
                 <li><strong>Akuntabilitas partner</strong> - Teman yang saling mengingatkan tujuan</li>
             </ul>
             
@@ -1149,67 +1205,8 @@
             e.stopPropagation();
         };
 
-        // ===== TAMBAHAN: Fungsi untuk Popover Dopamin Hit Buruk =====
-        const dopaminBurukTitle = document.getElementById('dopaminBurukTitle');
-        const dopaminBurukPopover = document.getElementById('dopaminBurukPopover');
-        let popoverVisible = false;
-        let popoverTimeout;
-
-        // Tampilkan popover saat klik
-        dopaminBurukTitle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            // Toggle visibility
-            if (!popoverVisible) {
-                dopaminBurukPopover.style.display = 'block';
-                popoverVisible = true;
-                
-                // Sembunyikan setelah 3 detik
-                popoverTimeout = setTimeout(() => {
-                    dopaminBurukPopover.style.display = 'none';
-                    popoverVisible = false;
-                }, 3000);
-            } else {
-                dopaminBurukPopover.style.display = 'none';
-                popoverVisible = false;
-                clearTimeout(popoverTimeout);
-            }
-        });
-
-        // Sembunyikan popover saat klik di luar
-        document.addEventListener('click', function(e) {
-            if (popoverVisible && !dopaminBurukTitle.contains(e.target)) {
-                dopaminBurukPopover.style.display = 'none';
-                popoverVisible = false;
-                clearTimeout(popoverTimeout);
-            }
-        });
-
-        // Tampilkan popover saat hover (opsional)
-        dopaminBurukTitle.addEventListener('mouseenter', function() {
-            if (!popoverVisible) {
-                dopaminBurukPopover.style.display = 'block';
-                popoverVisible = true;
-                
-                popoverTimeout = setTimeout(() => {
-                    dopaminBurukPopover.style.display = 'none';
-                    popoverVisible = false;
-                }, 3000);
-            }
-        });
-
-        // Tetap tampilkan saat hover di popover
-        dopaminBurukPopover.addEventListener('mouseenter', function() {
-            clearTimeout(popoverTimeout);
-        });
-
-        // Lanjutkan timeout saat keluar dari popover
-        dopaminBurukPopover.addEventListener('mouseleave', function() {
-            popoverTimeout = setTimeout(() => {
-                dopaminBurukPopover.style.display = 'none';
-                popoverVisible = false;
-            }, 1000);
-        });
+        // ===== TAMBAHAN: Fungsi untuk Popover (Hover-based) =====
+        // Tidak perlu JavaScript tambahan karena popover dikontrol dengan CSS hover
     </script>
 </body>
 
