@@ -679,7 +679,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 850px; /* Lebar untuk dua konten horizontal */
+            max-width: 1260px; /* Lebar untuk TIGA konten horizontal */
             max-height: 100vh;
             background: rgba(255, 255, 255, 0.98);
             border-radius: 12px;
@@ -688,7 +688,7 @@
             overflow: hidden;
             box-sizing: border-box;
             text-align: center;
-            width: 90%;
+            width: 95%;
         }
 
         /* Container HORIZONTAL untuk video dan gambar */
@@ -921,13 +921,16 @@
     <div id="moneyModal" class="modal">
         <span class="close" onclick="document.getElementById('moneyModal').style.display='none'">&times;</span>
         <div class="money-modal-content">
-            <!-- Container HORIZONTAL untuk video dan gambar -->
+            <!-- Container HORIZONTAL untuk video, gambar, dan video3 -->
             <div class="horizontal-container">
                 <!-- Video 9.mp4 di kiri -->
                 <video src="9.mp4" controls class="vertical-video"></video>
                 
-                <!-- Gambar 08.jpeg di kanan -->
+                <!-- Gambar 08.jpeg di tengah -->
                 <img src="08.jpeg" alt="Gambar Duit" class="vertical-image">
+                
+                <!-- Video video3.mp4 di kanan -->
+                <video src="video3.mp4" controls class="vertical-video"></video>
             </div>
         </div>
     </div>
