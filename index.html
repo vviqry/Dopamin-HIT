@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -277,7 +277,7 @@
             transform: scale(1.1);
         }
 
-        /* Tombol 📜 baru di atas tombol 🔥 */
+        /* Tombol ≡ƒô£ baru di atas tombol ≡ƒöÑ */
         .floating-afirmasi-btn {
             position: fixed;
             bottom: 180px;
@@ -299,7 +299,7 @@
             transform: scale(1.1);
         }
 
-        /* Tombol ⚠ di atas tombol ▶ */
+        /* Tombol ΓÜá di atas tombol Γû╢ */
         .floating-warning-btn {
             position: fixed;
             bottom: 100px;
@@ -477,7 +477,7 @@
         /* ===== TAMBAHAN: Floating Button Cuan (Emas) ===== */
         .floating-cuan-btn {
             position: fixed;
-            top: 80px; /* Posisi di bawah tombol 💭 */
+            top: 80px; /* Posisi di bawah tombol ≡ƒÆ¡ */
             left: 20px;
             background: #F7D154; /* Warna emas */
             color: #8B4513; /* Warna coklat tua untuk kontras */
@@ -500,7 +500,7 @@
         /* ===== TAMBAHAN: Floating Button Peter Pan ===== */
         .floating-peterpan-btn {
             position: fixed;
-            top: 140px; /* Posisi di bawah tombol ㊗️ */
+            top: 140px; /* Posisi di bawah tombol πèù∩╕Å */
             left: 20px;
             background: #FF99CC; /* Warna pink muda/baby */
             color: #8B008B; /* Warna ungu tua untuk kontras */
@@ -523,7 +523,7 @@
         /* ===== TAMBAHAN: Floating Button Money Video ===== */
         .floating-money-btn {
             position: fixed;
-            top: 200px; /* Posisi di bawah tombol 👶 */
+            top: 200px; /* Posisi di bawah tombol ≡ƒæ╢ */
             left: 20px;
             background: #27ae60; /* Warna hijau uang */
             color: #ffffff; /* Warna putih untuk kontras */
@@ -541,6 +541,143 @@
         .floating-money-btn:hover {
             transform: scale(1.1);
             background: #229954; /* Warna hijau lebih gelap saat hover */
+        }
+
+        /* ===== TAMBAHAN: Floating Button Ferrari ===== */
+        .floating-ferrari-btn {
+            position: fixed;
+            top: 260px; /* Posisi di bawah tombol 💰 */
+            left: 20px;
+            background: #e74c3c; /* Warna merah Ferrari */
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            transition: transform 0.2s;
+        }
+
+        .floating-ferrari-btn:hover {
+            transform: scale(1.1);
+            background: #c0392b; /* Warna merah lebih gelap saat hover */
+        }
+
+        /* ===== TAMBAHAN: Floating Button Kalender ===== */
+        .floating-kalender-btn {
+            position: fixed;
+            bottom: 80px; /* Posisi di kiri bawah */
+            left: 20px;
+            background: #1abc9c; /* Warna teal/hijau tosca */
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            transition: transform 0.2s;
+        }
+
+        .floating-kalender-btn:hover {
+            transform: scale(1.1);
+            background: #16a085; /* Warna lebih gelap saat hover */
+        }
+
+        /* ===== TAMBAHAN: Floating Button Pesawat ===== */
+        .floating-pesawat-btn {
+            position: fixed;
+            bottom: 20px; /* Posisi di kiri bawah, paling bawah */
+            left: 20px;
+            background: #3498db; /* Warna biru langit */
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            transition: transform 0.2s;
+        }
+
+        .floating-pesawat-btn:hover {
+            transform: scale(1.1);
+            background: #2980b9; /* Warna biru lebih gelap saat hover */
+        }
+
+        /* ===== TAMBAHAN: Modal Ferrari Content ===== */
+        .ferrari-modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1000px;
+            max-height: 85vh;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .ferrari-video {
+            width: 400px;
+            height: 600px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: black;
+            flex-shrink: 0;
+        }
+
+        .ferrari-quote {
+            flex: 1;
+            width: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 20px;
+            color: #333;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            word-break: break-word;
+            background: linear-gradient(to bottom, #fff8dc, #faebd7);
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .ferrari-quote h2 {
+            text-align: center;
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .ferrari-quote p {
+            line-height: 1.7;
+            text-align: justify;
+            font-size: 0.95em;
+        }
+
+        .ferrari-quote .source {
+            font-style: italic;
+            color: #8b4513;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #deb887;
+            font-size: 0.9em;
         }
 
         /* ===== TAMBAHAN: Sticky Note Baru ===== */
@@ -679,7 +816,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 1260px; /* Lebar untuk TIGA konten horizontal */
+            max-width: 1280px; /* Lebar untuk tiga konten horizontal */
             max-height: 100vh;
             background: rgba(255, 255, 255, 0.98);
             border-radius: 12px;
@@ -688,7 +825,7 @@
             overflow: hidden;
             box-sizing: border-box;
             text-align: center;
-            width: 95%;
+            width: 90%;
         }
 
         /* Container HORIZONTAL untuk video dan gambar */
@@ -825,7 +962,7 @@
     </h1>
     
     <!-- ===== TAMBAHAN: Floating Button untuk Sticky Note Baru ===== -->
-    <button class="floating-note-btn" onclick="showNewStickyNote()" title="Tampilkan Pesan Motivasi">💭</button>
+    <button class="floating-note-btn" onclick="showNewStickyNote()" title="Tampilkan Pesan Motivasi">💡</button>
     
     <!-- ===== TAMBAHAN: Floating Button untuk Modal Cuan ===== -->
     <button class="floating-cuan-btn" onclick="document.getElementById('secretModal').style.display='block'" title="Rahasia Cuan">㊗️</button>
@@ -834,7 +971,16 @@
     <button class="floating-peterpan-btn" onclick="document.getElementById('peterpanModal').style.display='block'" title="Solusi Peter Pan Syndrome">👶</button>
     
     <!-- ===== TAMBAHAN: Floating Button untuk Money Video ===== -->
-    <button class="floating-money-btn" onclick="document.getElementById('moneyModal').style.display='block'" title="Video & Gambar Duit">💰</button>
+    <button class="floating-money-btn" onclick="document.getElementById('moneyModal').style.display='block'" title="Video &amp; Gambar Duit">💰</button>
+    
+    <!-- ===== TAMBAHAN: Floating Button Ferrari ===== -->
+    <button class="floating-ferrari-btn" onclick="document.getElementById('ferrariModal').style.display='block'" title="NoRisk-NoFerrari">🏎️</button>
+    
+    <!-- ===== TAMBAHAN: Floating Button Kalender ===== -->
+    <button class="floating-kalender-btn" onclick="window.open('https://vviqry.github.io/Kalender-Cuan/', '_blank')" title="Kalender Cuan">📅</button>
+    
+    <!-- ===== TAMBAHAN: Floating Button Pesawat ===== -->
+    <button class="floating-pesawat-btn" onclick="window.open('https://frontend-international.netlify.app/', '_blank')" title="Frontend International">✈️</button>
     
     <!-- ===== TAMBAHAN: Overlay Hitam Legam ===== -->
     <div class="overlay" id="overlay" onclick="hideNewStickyNote()"></div>
@@ -856,28 +1002,28 @@
         <div class="column bad">
             <!-- ===== TAMBAHAN: Popover untuk Dopamin Hit Buruk ===== -->
             <h2 id="dopaminBurukTitle" class="popover-trigger">
-                <span class="emoji">❌</span>Dopamin Hit Buruk
+                <span class="emoji">Γ¥î</span>Dopamin Hit Buruk
                 <div class="popover" id="dopaminBurukPopover">
                     Fokus pada tujuan, atau rasa bosan akan menerkammu
                 </div>
             </h2>
             <ul>
-                <li id="sosmed-li"><span class="emoji">❌</span>SOSMED</li>
-                <li id="youtube-li"><span class="emoji">❌</span>YOUTUBE</li>
-                <li><span class="emoji">❌</span>GAME</li>
-                <li id="threegp-li"><span class="emoji">❌</span>3gp</li>
-                <li><span class="emoji">❌</span>FILM</li>
-                <li><span class="emoji">❌</span>GOSIP</li>
-                <li><span class="emoji">❌</span>BERITA ONLINE</li>
-                <li><span class="emoji">❌</span>MUSIC</li>
+                <li id="sosmed-li"><span class="emoji">Γ¥î</span>SOSMED</li>
+                <li id="youtube-li"><span class="emoji">Γ¥î</span>YOUTUBE</li>
+                <li><span class="emoji">Γ¥î</span>GAME</li>
+                <li id="threegp-li"><span class="emoji">Γ¥î</span>3gp</li>
+                <li><span class="emoji">Γ¥î</span>FILM</li>
+                <li><span class="emoji">Γ¥î</span>GOSIP</li>
+                <li><span class="emoji">Γ¥î</span>BERITA ONLINE</li>
+                <li><span class="emoji">Γ¥î</span>MUSIC</li>
             </ul>
         </div>
         <div class="column good">
-            <h2><span class="emoji">✅</span>Dopamin Hit Baik</h2>
+            <h2><span class="emoji">Γ£à</span>Dopamin Hit Baik</h2>
             <ul>
-                <li id="baca-buku-li"><span class="emoji">✅</span>BACA BUKU</li>
-                <li><span class="emoji">✅</span>OLAHRAGA</li>
-                <li id="fokus-li"><span class="emoji">✅</span>FOKUS & KERJA KERAS</li>
+                <li id="baca-buku-li"><span class="emoji">Γ£à</span>BACA BUKU</li>
+                <li><span class="emoji">Γ£à</span>OLAHRAGA</li>
+                <li id="fokus-li"><span class="emoji">Γ£à</span>FOKUS & KERJA KERAS</li>
             </ul>
             <p class="quote" style="cursor:pointer;" onclick="window.open('https://www.threads.net/@notesbymaru/post/DRPkDO1kwdZ','_blank')">
                 "Terbiasa menahan rasa sakit"
@@ -897,12 +1043,12 @@
     </div>
     <!-- Audio Afirmasi (tersembunyi) -->
     <audio id="afirmasiAudio" src="01.mp3" loop style="display: none;"></audio>
-    <!-- Tombol 📜 (atas tombol 🔥) -->
+    <!-- Tombol Afirmasi (atas tombol Warning) -->
     <button class="floating-afirmasi-btn" onclick="openAfirmasiModal()" title="Afirmasi Meditasi">📜</button>
-    <!-- Tombol ⚠ (atas tombol ▶) -->
-    <button class="floating-warning-btn" onclick="document.getElementById('warningModal').style.display='block'" title="Stay Focused">🔥</button>
+    <!-- Tombol Warning (atas tombol Play) -->
+    <button class="floating-warning-btn" onclick="document.getElementById('warningModal').style.display='block'" title="Stay Focused">🔔</button>
     <!-- Tombol Bulat Melayang untuk Video -->
-    <button class="floating-video-btn" onclick="document.getElementById('videoGalleryModal').style.display='block'" title="Play Videos Vertikal">▶</button>
+    <button class="floating-video-btn" onclick="document.getElementById('videoGalleryModal').style.display='block'" title="Play Videos Vertikal">▶️</button>
     <!-- Sticky Note -->
     <div class="sticky-note" id="stickyNote">
         <div class="sticky-note-header">Catatan Penting:</div>
@@ -921,7 +1067,7 @@
     <div id="moneyModal" class="modal">
         <span class="close" onclick="document.getElementById('moneyModal').style.display='none'">&times;</span>
         <div class="money-modal-content">
-            <!-- Container HORIZONTAL untuk video, gambar, dan video3 -->
+            <!-- Container HORIZONTAL untuk video dan gambar -->
             <div class="horizontal-container">
                 <!-- Video 9.mp4 di kiri -->
                 <video src="9.mp4" controls class="vertical-video"></video>
@@ -931,6 +1077,25 @@
                 
                 <!-- Video video3.mp4 di kanan -->
                 <video src="video3.mp4" controls class="vertical-video"></video>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== TAMBAHAN: Modal Ferrari - NoRisk NoFerrari ===== -->
+    <div id="ferrariModal" class="modal">
+        <span class="close" onclick="document.getElementById('ferrariModal').style.display='none'">&times;</span>
+        <div class="ferrari-modal-content">
+            <!-- Video NoRisk-NoFerrari di kiri -->
+            <video src="NoRisk-NoFerrari.mp4" controls class="ferrari-video"></video>
+            
+            <!-- Quote di kanan -->
+            <div class="ferrari-quote">
+                <h2>🏎️ Jangan Terlalu Banyak Bergurau</h2>
+                <p>Rasulullah saw. menasihatkan agar jangan terlalu banyak tertawa (atau bergurau) karena itu akan mematikan hati (HR At Tirmidzi).</p>
+                <p>Secara psikologis, orang yang banyak tertawa cenderung menjadi pribadi yang gelisah, tidak tenang, dan gersang hatinya karena ketidakseimbangan produksi hormon di otaknya.</p>
+                <p>Dia akan mudah terkena paranoid, berburuk sangka, dan shalat pun sulit khusyuk.</p>
+                <p>Apabila dibiarkan, hatinya akan mati sehingga tidak lagi peka terhadap amal saleh. Dia tidak peduli dengan orang lain karena sibuk dengan kegelisahannya.</p>
+                <p class="source">📖 HR At Tirmidzi</p>
             </div>
         </div>
     </div>
@@ -981,11 +1146,11 @@
             </ul>
             
             <div class="tip">
-                <strong>💡 Tips Penting:</strong> Proses menjadi dewasa bukan tentang kehilangan keceriaan, tapi tentang menambah kedewasaan tanpa menghilangkan jiwa muda yang positif.
+                <strong>≡ƒÆí Tips Penting:</strong> Proses menjadi dewasa bukan tentang kehilangan keceriaan, tapi tentang menambah kedewasaan tanpa menghilangkan jiwa muda yang positif.
             </div>
             
             <div class="warning">
-                <strong>⚠️ Peringatan:</strong> Peter Pan Syndrome yang tidak ditangani dapat menyebabkan masalah serius dalam karir, hubungan, dan kesehatan mental di usia 30-40 tahun.
+                <strong>ΓÜá∩╕Å Peringatan:</strong> Peter Pan Syndrome yang tidak ditangani dapat menyebabkan masalah serius dalam karir, hubungan, dan kesehatan mental di usia 30-40 tahun.
             </div>
             
             <h3>6. Dukungan Eksternal</h3>
@@ -1009,13 +1174,13 @@
         </div>
     </div>
     
-    <!-- Modal 📜 - Afirmasi Meditasi -->
+    <!-- Modal ≡ƒô£ - Afirmasi Meditasi -->
     <div id="afirmasiModal" class="modal">
         <span class="close" onclick="closeAfirmasiModal()">&times;</span>
         <div class="afirmasi-modal-content">
             <div class="afirmasi-text-container">
                 <h2>SCRIPT AFIRMASI UNTUK MEDITASI</h2>
-                Tarik napas… dan mulai dengarkan kata-katanya masuk ke dalam dirimu.
+                Tarik napasΓÇª dan mulai dengarkan kata-katanya masuk ke dalam dirimu.
                 <div class="afirmasi-text">
                     -------------------------------------------------------------------------------------
                     <span class="line-left" style="margin-left:0px;">Kalau lu Gak diajak,</span><span class="line-right" style="margin-right:0px;">Jangan Maksa datang!</span>
@@ -1034,7 +1199,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal ⚠ - Pesan Stay Focused - dengan Video di Samping -->
+    <!-- Modal ΓÜá - Pesan Stay Focused - dengan Video di Samping -->
     <div id="warningModal" class="modal">
         <span class="close" onclick="document.getElementById('warningModal').style.display='none'">&times;</span>
         <div style="
@@ -1089,16 +1254,16 @@
                         perhatikan setiap langkah yang akan ditempuh, karna semuanya
                         PASTI & TENTU akan berdampak di masa depan
                     </li>
-                    <li style="margin-bottom: 10px;">Bakar 🔥🔥🔥 & Fokus pada tujuan (cek to do list)</li>
+                    <li style="margin-bottom: 10px;">Bakar ≡ƒöÑ≡ƒöÑ≡ƒöÑ & Fokus pada tujuan (cek to do list)</li>
                     <li style="margin-bottom: 10px;">
                         <strong>Samatha & Vipassana</strong><br>
-                        - Saat dorongan muncul → duduk, tarik napas 10x perlahan, amati dorongan tanpa melawan (Vipassana).<br>
-                        - Fokus ulang → alihkan ke napas/objek meditasi (Samatha).<br>
-                        - Terapkan daily → 10–15 menit pagi/sore supaya otak terbiasa lebih tenang.
+                        - Saat dorongan muncul ΓåÆ duduk, tarik napas 10x perlahan, amati dorongan tanpa melawan (Vipassana).<br>
+                        - Fokus ulang ΓåÆ alihkan ke napas/objek meditasi (Samatha).<br>
+                        - Terapkan daily ΓåÆ 10ΓÇô15 menit pagi/sore supaya otak terbiasa lebih tenang.
                     </li>
                     <li style="margin-bottom: 10px;">cek quote app "Zero faulty habit"</li>
                     <li style="margin-bottom: 10px;">
-                        ‌Investasikan waktu pada hal produktif, supaya dirimu di masa depan berterima kasih
+                        ΓÇîInvestasikan waktu pada hal produktif, supaya dirimu di masa depan berterima kasih
                     </li>
                 </ul>
             </div>
@@ -1191,7 +1356,7 @@
                 <li style="margin-bottom:8px;"><strong>Melihat Peluang Kecil</strong><br>Mereka berani memanfaatkan lokasi atau peluang yang dianggap tidak strategis oleh orang lain, lalu membangunnya sedikit demi sedikit sampai ramai.</li>
                 <li style="margin-bottom:8px;"><strong>Pelayanan dan Loyalitas Pelanggan</strong><br>Mereka menjaga hubungan baik dengan pembeli. Lebih baik untung kecil tapi pelanggan balik lagi, daripada untung besar tapi pelanggan hilang.</li>
                 <li style="margin-bottom:8px;"><strong>Berpikir Jangka Panjang</strong><br>Mereka sabar membangun fondasi bisnis bertahun-tahun. Setelah kuat, baru naik pesat tanpa takut runtuh.</li>
-                <li style="margin-bottom:8px;"><strong>Menghargai Ilmu dan Belajar Terus</strong><br>Mereka belajar dari siapa pun — orang tua, pemasok, pelanggan. Pengetahuan praktis lebih diutamakan daripada teori tanpa tindakan.</li>
+                <li style="margin-bottom:8px;"><strong>Menghargai Ilmu dan Belajar Terus</strong><br>Mereka belajar dari siapa pun ΓÇö orang tua, pemasok, pelanggan. Pengetahuan praktis lebih diutamakan daripada teori tanpa tindakan.</li>
                 <li style="margin-bottom:8px;"><strong>Komunitas dan Jaringan Kuat</strong><br>Mereka sering berkumpul untuk bertukar informasi bisnis, bukan sekadar nongkrong. Dari situ muncul peluang baru dan solusi cepat.</li>
                 <li style="margin-bottom:8px;"><strong>Kebiasaan Menabung dan Investasi Produktif</strong><br>Walau pendapatan kecil, selalu disisihkan sedikit demi sedikit hingga jadi modal besar. Mereka membeli aset yang menghasilkan, bukan sekadar barang mewah.</li>
                 <li style="margin-bottom:8px;"><strong>Berani Ambil Risiko yang Dihitung</strong><br>Mereka cepat bertindak saat melihat peluang, tapi tetap dengan perhitungan matang.</li>
@@ -1201,7 +1366,7 @@
     </div>
     
     <script>
-        let scrollInterval = null; // ← LETAKKAN DI PALING ATAS (GLOBAL)
+        let scrollInterval = null; // ΓåÉ LETAKKAN DI PALING ATAS (GLOBAL)
 
         const stickyNote = document.getElementById('stickyNote');
         let isDragging = false,
