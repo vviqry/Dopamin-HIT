@@ -566,6 +566,29 @@
             background: #c0392b; /* Warna merah lebih gelap saat hover */
         }
 
+        /* ===== TAMBAHAN: Floating Button BMC (Canvas) ===== */
+        .floating-bmc-btn {
+            position: fixed;
+            bottom: 140px; /* Posisi di atas tombol kalender */
+            left: 20px;
+            background: #9b59b6; /* Warna ungu */
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            transition: transform 0.2s;
+        }
+
+        .floating-bmc-btn:hover {
+            transform: scale(1.1);
+            background: #8e44ad; /* Warna lebih gelap saat hover */
+        }
+
         /* ===== TAMBAHAN: Floating Button Kalender ===== */
         .floating-kalender-btn {
             position: fixed;
@@ -680,25 +703,28 @@
             font-size: 0.9em;
         }
 
-        /* ===== TAMBAHAN: Sticky Note Baru ===== */
-        .new-sticky-note {
+        /* ===== TAMBAHAN: Container untuk Dua Sticky Note ===== */
+        .sticky-notes-container {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            z-index: 2000;
+            gap: 20px;
+        }
+
+        /* ===== TAMBAHAN: Sticky Note Baru (pertama) ===== */
+        .new-sticky-note {
             width: 320px;
-            min-height: 320px;
+            min-height: 280px;
             background-color: #fff9c4;
             border: 2px solid #f57f17;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            z-index: 2000;
             font-size: 0.9em;
             line-height: 1.4;
-            resize: both;
-            overflow: auto;
         }
 
         .new-sticky-note-header {
@@ -710,6 +736,31 @@
         }
 
         .new-sticky-note-content {
+            font-style: italic;
+        }
+
+        /* ===== TAMBAHAN: Sticky Note Kedua (warna kuning sama) ===== */
+        .new-sticky-note-2 {
+            width: 320px;
+            min-height: 280px;
+            background-color: #fff9c4; /* Warna kuning sama */
+            border: 2px solid #f57f17;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .new-sticky-note-2-header {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #d84315;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .new-sticky-note-2-content {
             font-style: italic;
         }
 
@@ -976,6 +1027,9 @@
     <!-- ===== TAMBAHAN: Floating Button Ferrari ===== -->
     <button class="floating-ferrari-btn" onclick="document.getElementById('ferrariModal').style.display='block'" title="NoRisk-NoFerrari">🏎️</button>
     
+    <!-- ===== TAMBAHAN: Floating Button BMC ===== -->
+    <button class="floating-bmc-btn" onclick="window.open('https://vviqry.github.io/Bisnis_model_canvas/', '_blank')" title="Bisnis Model Canvas">📋</button>
+    
     <!-- ===== TAMBAHAN: Floating Button Kalender ===== -->
     <button class="floating-kalender-btn" onclick="window.open('https://vviqry.github.io/Kalender-Cuan/', '_blank')" title="Kalender Cuan">📅</button>
     
@@ -985,16 +1039,33 @@
     <!-- ===== TAMBAHAN: Overlay Hitam Legam ===== -->
     <div class="overlay" id="overlay" onclick="hideNewStickyNote()"></div>
     
-    <!-- ===== TAMBAHAN: Sticky Note Baru ===== -->
-    <div class="new-sticky-note" id="newStickyNote">
-        <div class="new-sticky-note-header">Pesan Motivasi:</div>
-        <div class="new-sticky-note-content">
-            <span class="line-left">Nggak punya teman,</span><span class="line-right">lo kebanyakan diem.</span>
-            <span class="line-left">Nggak punya duit,</span><span class="line-right">lo nggak punya value.</span>
-            <span class="line-left">Nggak produktif,</span><span class="line-right">lo sibuk ngeluh.</span>
-            <span class="line-left">Nggak bahagia,</span><span class="line-right">lo lupa bersyukur.</span>
-            <span class="line-left">Nggak ada mood,</span><span class="line-right">lo nggak pernah olahraga.</span>
-            <span class="line-left">Nggak punya ilmu,</span><span class="line-right">lo males belajar.</span>
+    <!-- ===== TAMBAHAN: Container Dua Sticky Note ===== -->
+    <div class="sticky-notes-container" id="stickyNotesContainer">
+        <!-- Sticky Note Pertama -->
+        <div class="new-sticky-note">
+            <div class="new-sticky-note-header">Pesan Motivasi:</div>
+            <div class="new-sticky-note-content">
+                <span class="line-left">Nggak punya teman,</span><span class="line-right">lo kebanyakan diem.</span>
+                <span class="line-left">Nggak punya duit,</span><span class="line-right">lo nggak punya value.</span>
+                <span class="line-left">Nggak produktif,</span><span class="line-right">lo sibuk ngeluh.</span>
+                <span class="line-left">Nggak bahagia,</span><span class="line-right">lo lupa bersyukur.</span>
+                <span class="line-left">Nggak ada mood,</span><span class="line-right">lo nggak pernah olahraga.</span>
+                <span class="line-left">Nggak punya ilmu,</span><span class="line-right">lo males belajar.</span>
+            </div>
+        </div>
+        <!-- Sticky Note Kedua -->
+        <div class="new-sticky-note-2">
+            <div class="new-sticky-note-2-header">Jangan lupa, bagi dua! 💡</div>
+            <div class="new-sticky-note-2-content">
+                <span class="line-left">Kalau lu ngerasa kendut,</span><span class="line-right">coba kurangin gula.</span>
+                <span class="line-left">Kalau lu punya utang,</span><span class="line-right">coba fokus cari uang.</span>
+                <span class="line-left">Kalau lu capek kerja sama orang lain,</span><span class="line-right">coba mulai bangun bisnis sendiri.</span>
+                <span class="line-left">Kalau lu ngerasa kesepian,</span><span class="line-right">coba cari partner yang sefrekuensi.</span>
+                <span class="line-left">Kalau lu kebanyakan scroll media sosial,</span><span class="line-right">coba bangun pagi dan cari matahari.</span>
+                <span class="line-left">Kalau kepala lu berisik terus,</span><span class="line-right">coba benerin pola tidur.</span>
+                <span class="line-left">Kalau fokus lu berantakan,</span><span class="line-right">coba matiin notifikasi.</span>
+                <span class="line-left">Kalau hidup lu kerasa mandeg,</span><span class="line-right">coba ambil langkah kecil setiap hari.</span>
+            </div>
         </div>
     </div>
     
@@ -1004,7 +1075,7 @@
             <h2 id="dopaminBurukTitle" class="popover-trigger">
                 <span class="emoji">❌</span>Dopamin Hit Buruk
                 <div class="popover" id="dopaminBurukPopover">
-                    Fokus pada tujuan, atau rasa bosan akan menerkammu
+                    Sumber malapetaka!!
                 </div>
             </h2>
             <ul>
@@ -1062,6 +1133,8 @@
             <p class="reminder-quote">"Cukuplah seseorang disebut pendusta, yaitu jika ia menceritakan setiap apa yang ia dengar." (HR. Muslim)</p>
         </div>
     </div>
+    
+
     
     <!-- ===== TAMBAHAN: Modal Money Content HORIZONTAL ===== -->
     <div id="moneyModal" class="modal">
@@ -1446,19 +1519,19 @@
         // ===== TAMBAHAN: Fungsi untuk Sticky Note Baru =====
         function showNewStickyNote() {
             document.getElementById('overlay').style.display = 'block';
-            document.getElementById('newStickyNote').style.display = 'block';
+            document.getElementById('stickyNotesContainer').style.display = 'flex';
         }
 
         function hideNewStickyNote() {
             document.getElementById('overlay').style.display = 'none';
-            document.getElementById('newStickyNote').style.display = 'none';
+            document.getElementById('stickyNotesContainer').style.display = 'none';
         }
 
         // Tutup sticky note saat klik di luar area sticky note (overlay)
         document.getElementById('overlay').onclick = hideNewStickyNote;
 
         // Mencegah sticky note baru menutup saat klik di dalamnya
-        document.getElementById('newStickyNote').onclick = function(e) {
+        document.getElementById('stickyNotesContainer').onclick = function(e) {
             e.stopPropagation();
         };
 
